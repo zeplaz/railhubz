@@ -1,0 +1,51 @@
+
+
+
+
+a) the best case scheduling does depend entirely on the application, however
+for this i would implement SJF as its easy to see which one would finish 1st.
+program 2 execution time is 2.42 s estimate. and program one is 23 seconds.
+the large distance is easily be notable. thus, having program two going to completion
+without necessary interrupting it (as both arrived at t=0 shorts reaming is uneasy).
+thus allowing program two to run, then program 1.
+
+assumy things programs were run in repetitive sequence, i would set a priority which
+would allow for multi runes of the prm2 and then handoff when demand need for prm1 as these
+likely be longg running functions grinding through data.
+
+b) 2.42+2.42+23= 27.84 s total run time. or avg completion at  13.92 s.
+
+
+Program 1:
+ program one carrys out a N^3 matrix calculation however this is on
+
+ 10 by 10 matrix
+
+ read Matrix a = (10^-2)*100
+ read Matrix b = (10^-2)*100
+
+
+  multiplyc 100^3
+  multiplyc 100^3
+              100^3+ 100^3 = 2000000 calculations
+              2000000/10^5 = 20 s
+
+  write c2 (10^-2)*100
+
+300(10^-2) = 3 s.
+
+
+THEREFORE: total execution time be 23 s.
+
+Program 2
+
+200(10^-2)
+1(10^-2)
+1(10^-2)
+Bubblesort(A) = 200^2 = 40000 calculations
+
+202((10^-2)) = 2.02s
++
+40000/10^5 = 0.4s
+
+THEREFORE: total execution time be 2.42 s.

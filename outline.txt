@@ -1,0 +1,97 @@
+
+to do:
+finsh railhub data struc for Trains sotrage
+this is a binary serch tree.
+
+fix the registy_maps stuff.
+keys for
+
+finish path maping.. who does what? were is wha tit needs?
+add a pointer to railhubs taken by lines aready takes it but only keeps
+a vector store pointer instead acess vecotr when need.
+
+
+
+railhubz are an indepent object. they do not trust or use the msg service
+simulate secutry or indepent system. they have their own structer of storege
+this would be tipical of a real train station the train phisicly is taking up
+space in a hub thta is not just a empty refs.
+
+
+hold:
+
+a id
+time creation
+a vector of pointers to R_linez connected to it.// this needs ot be apointer to a vector
+as the whole thing needs to be accsable by the Cmd_agent_operator
+
+binary serch tree for trainstorage,
+
+a sfml vectorfloat {used for gui pcement as well as calculations of location for trains}
+a sfml shapeobject for the gui.
+
+//interface
+
+constructor takes time, a sf vectorfloat and ref to total hubs in existnace.
+
+geter for location returns sfvecfloat
+
+add a train to the bts_ que.
+remove a train from bts_que
+find highest priorty train form bts que.
+
+
+
+
+list_linez returns a pointer to the vector of linepointers.
+
+
+draw funcion
+
+
+Train_sym_
+{
+
+
+
+
+}
+
+
+
+ #include<Train_sym_loop>
+main
+{
+
+//Basic Data settings
+
+struct Train_sim_data_demo Train_sim_data_demo
+
+{
+int* entity_Base_count;
+int*
+int railhubz;
+int Trainz_inlz //number of trains to Trainz_inlz
+}
+
+
+
+  sym1Train_lo1  = Train_sym_loop(Train_sim_data_demo);
+
+
+//while window open.
+
+  {
+      // event polling loop
+
+    //update_loop
+
+    //draw_update_loop
+
+
+
+  }
+
+
+
+}

@@ -1,0 +1,42 @@
+template <typename T> float sign(T val) {
+    return (T(0) < val) - (val < T(0));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//rail_L_vertex.position =  temp1;
+                        //rail_L_vertex.color  = sf::Color::Blue;
+                        //rail_L_vertex.position =  temp2;
+                        //rail_L_vertex.color  = sf::Color::Blue;
+                                  //rail_linez_array[2].position = sf::Vector2f(300, 5);
+                                  //rail_linez_array[3].position = sf::Vector2f(400, 2);
+                                  //rail_L_vertex.position =  temp2;
+                                                //    rail_L_vertex.color  =  sf::Color::Blue;
+                                                    //        rail_linez_array.append(rail_L_vertex);
+
+                                // rail_linez_array[0].position = temp;
+                                 //rail_linez_array[0].color = sf::Color::Blue;
+                                    //rail_linez_array[0]
+
+                                    //rail_linez_array[1].position = temp2;
+                                //    rail_linez_array[1].color  = sf::Color::Blue;
+
+                                //    printf("linecreation id: %",total_R_linez );
+
+}

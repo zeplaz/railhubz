@@ -1,0 +1,11 @@
+
+
+
+class Lin_signal
+
+{
+
+
+
+
+}
