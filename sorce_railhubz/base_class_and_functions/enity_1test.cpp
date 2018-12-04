@@ -10,8 +10,8 @@ void enity_1test::initialize(time_t c_time,enity_2test* start, enity_2test* dest
     train_enity_cra= c_time;
 
 
-     start_station=start;
-      end_station=destiation;
+     start_station= start;
+      end_station= destiation;
     currentLocation = start_station->get_location();
 
     cr_traingraphic.setRadius(5.f);
@@ -29,7 +29,11 @@ void enity_1test::load_data(double priority, int spd, Defined_train_path* path_t
                  trainrout =path_take;
                  next_station = trainrout->get_next_hub();
                  next_hub_location = next_station->get_location();
-                 distance_toNext_from_last= sqrt(abs((currentLocation.x*next_hub_location.x) + (currentLocation.y*next_hub_location.y )));
+                //  train_x = next_hub_location.x;
+                 // train_y =next_hub_location.y;
+
+    distance_toNext_from_last= sqrt(abs((currentLocation.x*next_hub_location.x) + (currentLocation.y*next_hub_location.y )));
+printf("intializationload data %s locaioanl drection: %f %r \n",distance_toNext_from_last ,next_hub_location.y ,next_hub_location.y);
 
                  }
 void enity_1test::update()
@@ -40,40 +44,51 @@ void enity_1test::update()
     { //printf("train is in update not arived");
     time_t currenttime = clock();
     double movmentTime= currenttime - train_enity_cra;
-    double vilocity_td =  (movmentTime/300)*speed/30;
+    double vilocity_td =  (movmentTime/200)*speed/30;
 
     if (distance_traveld > distance_toNext_from_last)
     {    printf("train is in updatehublv1\n");
+        distance_traveld = -1.f;
+        distance_toNext_from_last=-1.f;
 
-        if (trainrout->is_empty()==false)
-    {       printf("train is in updatehublv2\n");
-            next_station = trainrout->get_next_hub();
-            next_hub_location = next_station->get_location();
-            distance_toNext_from_last= sqrt(abs((currentLocation.x*next_hub_location.x) + (currentLocation.y*next_hub_location.y )));
-    }
-    }
-        if (trainrout->is_empty())
+        if (trainrout->is_empty()==true)
             {printf("trainhasarived!id: %s \n ", this->get_id());
             arived = true;
 
             }
+            if (trainrout->is_empty()==false)
+        {         printf("train is in updatehublv2\n");
+                next_station = trainrout->get_next_hub();
+                printf("train is in updatehublv3 reutn from rout.\n");
+                next_hub_location = next_station->get_location();
+
+                printf("train is in updatehublv4 reutn from nextlocationget.\n");
+                    printf("train locational data x2 %v x1 %j .\n",currentLocation.x ,next_hub_location.x);
+                distance_toNext_from_last= sqrt(abs((currentLocation.x*next_hub_location.x)
+                                            + (currentLocation.y*next_hub_location.y)));
+                printf("train is in updatehublv4 reutn from nextlocationget.\n");
+        }
+    }
 
 
+            if (arived == false)
+            {
         sf::Vector2f  old_vec;
-        double l=  (abs((currentLocation.x*next_hub_location.x) + (currentLocation.y*next_hub_location.y )));
 
-        l = sqrt(l);
-
+        //double l = sqrt(abs((currentLocation.x*next_hub_location.x) + (currentLocation.y*next_hub_location.y )));
 
         sf::Vector2f  normilzec_vec;
         old_vec    = currentLocation;
-//std::cout<< "info: l" <<movmentTime << "ohter:\n" <<vilocity ;
 
-std::cout<< "distance next to last" << distance_toNext_from_last << std::endl;
-std::cout<< "distance travled:" << l << std::endl;
-std::cout<< "velocty travled:" << vilocity_td << std::endl;
+        //std::cout<< "info: l" <<movmentTime << "ohter:\n" <<vilocity ;
+        std::cout<< "velocty id::" << entity_1_id << std::endl;
+        std::cout<< "distance next to last" << distance_toNext_from_last << std::endl;
+        //std::cout<< "distance l:" << l << std::endl;
+        std::cout<< "distance traveled:" << distance_traveld << std::endl;
+        std::cout<< "velocty travled:" << vilocity_td << std::endl;
 
-        normilzec_vec = normalize_and_Drectional_vector(l,currentLocation,next_hub_location);
+
+        normilzec_vec = normalize_and_Drectional_vector(distance_toNext_from_last,currentLocation,next_hub_location.x,next_hub_location.y);
 
         currentLocation.x     =normilzec_vec.x*vilocity_td;
         currentLocation.y   =normilzec_vec.y*vilocity_td;
@@ -87,7 +102,7 @@ double temp_dist;
 
         cr_traingraphic.setPosition(currentLocation);
 
-        }
+        }}
 
 
 
@@ -119,16 +134,25 @@ return false;
 }
 
 
-sf::Vector2f enity_1test::normalize_and_Drectional_vector(double len,sf::Vector2f C_vec1,sf::Vector2f D_vec2){
+    sf::Vector2f enity_1test::normalize_and_Drectional_vector(double len,sf::Vector2f C_vec1, double x2, double y2)
+{
+    double x1;
+    double y1;
     sf::Vector2f    temp_move_vec;
-    double dx = D_vec2.x-C_vec1.x;
-    double dy = D_vec2.y-C_vec1.y;
 
+    x1=  (double)C_vec1.x;
+    y1 =(double)C_vec1.y;
+
+    double dx = x2-x1;
+    double dy = y2-y1;
+std::cout << "normalz info:" << dy <<" dx" << dx <<std::endl;
      dx /= len;
      dy /= len;
-     temp_move_vec.x =abs(dx);
-     temp_move_vec.y= abs(dy);
-printf("innormalze\n");
+     std::cout << "normalz post deived:" << dy <<" dx" << dx <<std::endl;
+
+     temp_move_vec.x =(float)abs(dx);
+     temp_move_vec.y= (float)abs(dy);
+//printf("innormalze dy %s otherx %r \n",dy ,temp_move_vec.x );
 return (temp_move_vec);
 
 }

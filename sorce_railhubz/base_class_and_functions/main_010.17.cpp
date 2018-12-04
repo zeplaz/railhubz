@@ -54,8 +54,8 @@ x=30.f;
 y=250.f;
 enity_2test* tst_e2_2 = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
 
-x=200.f;
-y=10.f;
+x=100.f;
+y=140.f;
 enity_2test* tst_e2_3 = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
 
 x=400.f;
@@ -94,16 +94,7 @@ enity_2_idlist.push_front(tst_e2_4->get_id());
 
 ///trainz
 
-enity_1test* tst_e1_t0 = new enity_1test(main_runtime_o,tst_e2_0,tst_e2_3,total_ent_count);
-enity_1test* tst_e1_t1 = new enity_1test(main_runtime_o,tst_e2_3,tst_e2_0,total_ent_count);
 
-
-sym_manger->Register_entity(tst_e1_t0);
-sym_manger->Register_entity(tst_e1_t1);
-
-
-enity_1_idlist.push_front(tst_e1_t0->get_id());
-enity_1_idlist.push_front(tst_e1_t1->get_id());
 
 
 printf("beforepathgen\n");
@@ -115,14 +106,24 @@ printf("postepathge2n\n");
 sher_tro->addhubtoPath(tst_e2_0);
 printf("postepathge3n\n");
 sher_tro->addhubtoPath(tst_e2_2);
-sher_tro->addhubtoPath(tst_e2_3);
+//sher_tro->addhubtoPath(tst_e2_3);
 
 Defined_train_path* tor_sher = new Defined_train_path;
 tor_sher->addhubtoPath(tst_e2_3);
-tor_sher->addhubtoPath(tst_e2_2);
-tor_sher->addhubtoPath(tst_e2_0);
+tor_sher->addhubtoPath(tst_e2_1);
+//tor_sher->addhubtoPath(tst_e2_0);
+printf("postepathge4.0n\n");
+enity_1test* tst_e1_t0 = new enity_1test(main_runtime_o,tst_e2_0 ,tst_e2_3,total_ent_count);
+
+enity_1test* tst_e1_t1 = new enity_1test(main_runtime_o,tst_e2_4 , tst_e2_0,total_ent_count);
+printf("postepathge4.1n\n");
+
+sym_manger->Register_entity(tst_e1_t0);
+sym_manger->Register_entity(tst_e1_t1);
 
 
+enity_1_idlist.push_front(tst_e1_t0->get_id());
+enity_1_idlist.push_front(tst_e1_t1->get_id());
 
 //load data into train
 
@@ -133,7 +134,8 @@ int speed1 =1;
 int speed5=5;
 
 tst_e1_t0->load_data(priority01,speed1,tor_sher);
-tst_e1_t1->load_data(priorty03,speed5,sher_tro);
+
+tst_e1_t1->load_data(priorty02,speed5,sher_tro);
 /*
 
 tst_e1_1->load_data(priorty02,tor_sher);
@@ -170,7 +172,8 @@ while (window.isOpen())
 // itraor processing
 
 
-
+tst_e1_t0->update();
+tst_e1_t1->update();
 
 // clear and draw
         window.clear();
@@ -200,8 +203,7 @@ while (window.isOpen())
     window.display();
 //    printf("loop\n");
 
-    tst_e1_t0->update();
-    tst_e1_t1->update();
+
 }
 
 // cleanup

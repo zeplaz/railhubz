@@ -21,7 +21,7 @@ class enity_2test;
 //class vector_math;
 class enity_1test: public Base_TSym_entity
 {
-protected :
+private :
 
 
     sf::CircleShape cr_traingraphic;
@@ -32,7 +32,8 @@ protected :
        double esclatcatator_priority;
        int speed;
 
-
+double train_x;
+double train_y;
     enity_2test* start_station;
     enity_2test* end_station;
     enity_2test* next_station;
@@ -43,7 +44,7 @@ protected :
    Defined_train_path* trainrout;
 
    double distance_toNext_from_last;
-   float distance_traveld=0;
+   double distance_traveld=0;
     bool arived = false;
 
 public :
@@ -68,7 +69,11 @@ double  dot ( sf::Vector2f vec1,  sf::Vector2f vec2);
   {
       entity_1_id = total_enty;
       total_enty++;
+    //  printf("enitycount: %s\n", total_enty );
       initialize(cur_time, start,destiation);
   }
-sf::Vector2f normalize_and_Drectional_vector(double len,sf::Vector2f C_vec1,sf::Vector2f D_vec2);
+
+  sf::Vector2f normalize_and_Drectional_vector(double len,sf::Vector2f C_vec1,double x2, double y2);
+
+
   };

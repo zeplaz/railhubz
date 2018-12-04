@@ -3,7 +3,7 @@
 
 #include "msg_cmdz.h"
 #include "msg_dispatcher.h"
-#include "vector_math.h"
+//#include "vector_math.h"
 //#include "priorty_Objc_que.h"
 
 #include "Base_TSym_entity.h"
@@ -22,7 +22,8 @@ class enity_2test: public Base_TSym_entity
 protected :
         sf::CircleShape cr_hubgraphic;
        sf::Vector2f Location;
-
+    double train_x;
+    double train_y;
         int entity_2_id;
        time_t stationary_enity_t;
 

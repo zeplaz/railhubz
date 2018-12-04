@@ -10,11 +10,7 @@ class vector_math {
 
 public:
 
-    static  float dot (const sf::Vector2f& vec1, const sf::Vector2f& vec2)
-    {
-    return vec1.x*vec2.x + vec1.y*vec2.y;
 
-    }
 
     static double Distance_cal(sf::Vector2f& vec1,sf::Vector2f& vec2)
      {
@@ -23,6 +19,10 @@ public:
 
          return  (sqrt(xL/yL));
      }
+
+
+
+};
 
 static    double Drectional_dxr(double L,sf::Vector2f C_vec1,sf::Vector2f D_vec2)
     {
@@ -33,22 +33,24 @@ static    double Drectional_dxr(double L,sf::Vector2f C_vec1,sf::Vector2f D_vec2
 
 
         return (S*(mx/L)+(mx/L)/S);
-    }
+    };
 
-};
+/*static  double  dot ( sf::Vector2f vec1,  sf::Vector2f vec2)
+{printf("in dot %s\n",vec1.x*vec2.x + vec1.y*vec2.y) ;
+return vec1.x*vec2.x + vec1.y*vec2.y;
 
-
-
-static sf::Vector2f normalize_and_Drectional_vector(float len,sf::Vector2f C_vec1,sf::Vector2f D_vec2){
+};*/
+/*
+static sf::Vector2f normalize_and_Drectional_vector(double len,sf::Vector2f C_vec1,sf::Vector2f D_vec2){
     sf::Vector2f    temp_move_vec;
-    float dx = D_vec2.x-C_vec1.x;
-    float dy = D_vec2.x-C_vec1.y;
+    double dx = D_vec2.x-C_vec1.x;
+    double dy = D_vec2.y-C_vec1.y;
 
      dx /= len;
      dy /= len;
-     temp_move_vec.x =dx;
-     temp_move_vec.y= dy;
-
+     temp_move_vec.x =abs(dx);
+     temp_move_vec.y= abs(dy);
+printf("innormalze\n");
 return (temp_move_vec);
 
 };

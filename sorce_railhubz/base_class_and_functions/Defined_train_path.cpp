@@ -9,9 +9,19 @@
 
 enity_2test* Defined_train_path::get_next_hub()
 {
-    enity_2test* temp_hub_prt = train_path_stk.top();
+    if (!train_path_stk.empty())
+    {    enity_2test* temp_hub_prt = train_path_stk.top();
     train_path_stk.pop();
+    printf("you arein getnexthub_definePath\n");
     return(temp_hub_prt);
+
+    }
+    else { enity_2test* temp_ptrNUll;
+            printf("you arein else requet emptystack error\n");
+            return temp_ptrNUll;
+
+            }
+
 }
 
     void Defined_train_path::addhubtoPath(enity_2test* newrailhub)
@@ -21,5 +31,5 @@ enity_2test* Defined_train_path::get_next_hub()
 
  bool Defined_train_path::is_empty()
  {
-     train_path_stk.empty();
+    return (train_path_stk.empty());
  }
