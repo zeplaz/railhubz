@@ -15,8 +15,9 @@ void enity_2test::initialize(time_t c_time, sf::Vector2f stloc)
     Location = stloc;
 
     cr_hubgraphic.setRadius(20.f);
-    cr_hubgraphic.setPosition(Location);
+    cr_hubgraphic.setPosition(stloc);
     cr_hubgraphic.setFillColor(sf::Color::Green);
+    Location= stloc;
 
 }
 

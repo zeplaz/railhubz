@@ -48,7 +48,7 @@ double train_y;
     bool arived = false;
 
 public :
-   void load_data(double priority, int spd, Defined_train_path* path_take);
+   void load_data(double priority, float spd, Defined_train_path* path_take);
 
    void update();
 

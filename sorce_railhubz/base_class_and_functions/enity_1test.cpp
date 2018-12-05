@@ -12,7 +12,7 @@ void enity_1test::initialize(time_t c_time,enity_2test* start, enity_2test* dest
 
      start_station= start;
       end_station= destiation;
-    currentLocation = start_station->get_location();
+    currentLocation = start->get_location();
 
     cr_traingraphic.setRadius(5.f);
     cr_traingraphic.setPosition(currentLocation);
@@ -20,7 +20,7 @@ void enity_1test::initialize(time_t c_time,enity_2test* start, enity_2test* dest
 
 }
 
-void enity_1test::load_data(double priority, int spd, Defined_train_path* path_take)
+void enity_1test::load_data(double priority, float spd, Defined_train_path* path_take)
 
 {            // vector_math mathobj;
 
@@ -32,7 +32,7 @@ void enity_1test::load_data(double priority, int spd, Defined_train_path* path_t
                 //  train_x = next_hub_location.x;
                  // train_y =next_hub_location.y;
 
-    distance_toNext_from_last= sqrt(abs((currentLocation.x*next_hub_location.x) - (currentLocation.y*next_hub_location.y )));
+    distance_toNext_from_last= sqrt(abs((currentLocation.x*next_hub_location.x) + (currentLocation.y*next_hub_location.y )));
 printf("intializationload data %s locaioanl drection: %f %r \n",distance_toNext_from_last ,next_hub_location.y ,next_hub_location.y);
 
                  }
@@ -44,13 +44,13 @@ void enity_1test::update()
     { //printf("train is in update not arived");
     time_t currenttime = clock();
     double movmentTime= currenttime - train_enity_cra;
-    double vilocity_td =  (movmentTime/300)*speed/10;
+    double vilocity_td =  (movmentTime/300)*speed/30;
     //train_enity_cra =  clock();
     //train_enity_cra= movmentTime;
 
     if (distance_traveld > distance_toNext_from_last)
     {    printf("train is in updatehublv1\n");
-        distance_traveld = -1.f;
+        distance_traveld = 0.f;
     //    distance_toNext_from_last=-1.f;
 
         if (trainrout->is_empty()==true)
@@ -65,7 +65,8 @@ void enity_1test::update()
                 next_hub_location = next_station->get_location();
 
                 printf("train is in updatehublv4 reutn from nextlocationget.\n");
-                    printf("train locational data x2 %v x1 %j .\n",currentLocation.x ,next_hub_location.x);
+                    printf("train locational data x2 %k x1 %v .\n",currentLocation.x ,next_hub_location.x);
+
                 distance_toNext_from_last= sqrt(abs(currentLocation.x*next_hub_location.x)
                                             + abs(currentLocation.y*next_hub_location.y));
                 printf("train is in updatehublv4 reutn from nextlocationget.\n");
@@ -83,7 +84,7 @@ void enity_1test::update()
         old_vec    = currentLocation;
 
         //std::cout<< "info: l" <<movmentTime << "ohter:\n" <<vilocity ;
-        std::cout<< "velocty id::" << entity_1_id << std::endl;
+        std::cout<< "train id::" << entity_1_id << std::endl;
         std::cout<< "distance next to last" << distance_toNext_from_last << std::endl;
         //std::cout<< "distance l:" << l << std::endl;
         std::cout<< "distance traveled:" << distance_traveld << std::endl;
@@ -98,9 +99,10 @@ void enity_1test::update()
         std::cout << currentLocation.x << std::endl ;
         std::cout <<currentLocation.y<< std::endl ;
 
-double temp_dist;
-    //    temp_dist += sqrt(abs((currentLocation.x*old_vec.x) + (currentLocation.y*old_vec.y )));
-         distance_traveld= sqrt(abs((currentLocation.x*old_vec.x) + (currentLocation.y*old_vec.y )));
+        double temp_dist;
+        temp_dist = sqrt(abs(currentLocation.x*old_vec.x) + abs(currentLocation.y*old_vec.y ));
+        // distance_traveld= temp_dist+ sqrt(abs(currentLocation.x*old_vec.x) - abs(currentLocation.y*old_vec.y ));
+            distance_traveld =abs(distance_toNext_from_last-temp_dist);
 
         cr_traingraphic.setPosition(currentLocation);
 
