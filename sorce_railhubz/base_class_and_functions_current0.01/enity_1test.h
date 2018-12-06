@@ -45,7 +45,21 @@ double train_y;
 
    double distance_toNext_from_last;
    double distance_traveld=0;
-    bool arived = false;
+    bool arived_f = false;
+    double active_line;
+    bool is_halt = false;
+
+
+    double Drectional_dxr(double L,sf::Vector2f C_vec1,sf::Vector2f D_vec2)
+       {
+           double S;
+           double mx =D_vec2.x-C_vec1.x;
+           double my= D_vec2.x-C_vec1.x;
+           S = (mx)/(my);
+
+
+           return (S*(mx/L)+(mx/L)/S);
+       };
 
 public :
    void load_data(double priority, float spd, Defined_train_path* path_take);
@@ -74,6 +88,14 @@ double  dot ( sf::Vector2f vec1,  sf::Vector2f vec2);
   }
 
   sf::Vector2f normalize_and_Drectional_vector(double len,sf::Vector2f C_vec1,double x2, double y2);
+
+
+    void hault();
+
+    void move(int enter_line_id);
+
+    bool  arived_final();
+
 
 
   };

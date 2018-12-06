@@ -46,6 +46,29 @@ protected:
 	//railhubz *rOrign_Station;
 	//railhubz *rDestination_station;
 
+
+        double Drectional_dxr(double L,sf::Vector2f C_vec1,sf::Vector2f D_vec2)
+    {     printf("in Drectional_dxr\n");
+
+        double S;
+        double mx =D_vec2.x-C_vec1.x;
+        double my= D_vec2.x-C_vec1.x;
+        S = (mx)/(my);
+
+
+        return (S*(mx/L)+(mx/L)/S);
+    }
+
+
+    double Distance_cal(sf::Vector2f& vec1,sf::Vector2f& vec2)
+    {
+        printf("in distanc cal\n");
+           double xL= (vec2.x-vec1.x)*(vec2.x-vec1.x);
+           double yL= (vec2.y-vec1.y)*(vec2.y-vec1.y);
+
+        return  (sqrt(xL/yL));
+    }
+
 public:
 
 
@@ -87,26 +110,8 @@ public:
 };
 
 
-static double Distance_cal(sf::Vector2f& vec1,sf::Vector2f& vec2)
- {
-     printf("in distanc cal\n");
-        double xL= (vec2.x-vec1.x)*(vec2.x-vec1.x);
-        double yL= (vec2.y-vec1.y)*(vec2.y-vec1.y);
-
-     return  (sqrt(xL/yL));
- };
-
-static    double Drectional_dxr(double L,sf::Vector2f C_vec1,sf::Vector2f D_vec2)
-{     printf("in Drectional_dxr\n");
-
-    double S;
-    double mx =D_vec2.x-C_vec1.x;
-    double my= D_vec2.x-C_vec1.x;
-    S = (mx)/(my);
 
 
-    return (S*(mx/L)+(mx/L)/S);
-};
 
 
 

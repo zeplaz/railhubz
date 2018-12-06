@@ -74,9 +74,10 @@
                         {AcessArray_channels[1] =true;}
 
             time_t msgcurrnt = clock();
+            double temp_id_dbforpackt= (double)this->get_id();
 
-           telagram  cmd_telamove(msgcurrnt,this->line_id,tela.sender,
-                                 -1,move_cmd,0);
+           telagram  cmd_telamove(0,this->line_id,tela.sender,
+                                 -1,move_cmd,temp_id_dbforpackt);
                                  this->Handle_telagram(cmd_telamove);
 
             return true;
