@@ -66,7 +66,7 @@ protected:
            double xL= (vec2.x-vec1.x)*(vec2.x-vec1.x);
            double yL= (vec2.y-vec1.y)*(vec2.y-vec1.y);
 
-        return  (sqrt(xL/yL));
+        return  (sqrt(abs(xL/yL)));
     }
 
 public:
@@ -104,7 +104,7 @@ public:
 
 	double  line__drection_status();
 
-	bool can_add_train_tochannel(sf::Vector2f* currnt_l, sf::Vector2f* next_l);
+	bool can_add_train_tochannel(sf::Vector2f currnt_l, sf::Vector2f next_l);
 
 
 };

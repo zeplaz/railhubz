@@ -62,7 +62,7 @@ public :
 
     int enity_count =0;
     int train_count=0;
-  int hubz_count =0;
+    int hubz_count =0;
 
     int number_of_dispatches=0;
     int numberofarrvails=0;

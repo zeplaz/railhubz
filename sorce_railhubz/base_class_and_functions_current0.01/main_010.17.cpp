@@ -18,6 +18,7 @@
 //#include "test_entity1.h"
 #include <iostream>
 
+#include "Cmd_agent_v2Operaor.h"
 
 int main ()
 
@@ -45,25 +46,27 @@ time_t main_runtime_o;
 float x;
 float y;
 
-x=300.f;
-y=200.f;
+x=454.f;
+y=620.f;
 printf("nnewtestpage....\n");
 enity_2test* sherbyz = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
 
-x=40.f;
-y=70.f;
+x=500.f;
+y=550.f;
 enity_2test* mtl = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
-x=70.f;
-y=250.f;
+
+x=237.f;
+y=450.f;
 enity_2test* tro = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
 
-x=300.f;
-y=540.f;
-enity_2test* tst_e2_3 = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
+x=760.f;
+y=290.f;
+enity_2test* qcity = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
 
-x=400.f;
-y=30.f;
-enity_2test* tst_e2_4 = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
+x=450.f;
+y=500.f;
+enity_2test* ottw = new enity_2test(main_runtime_o,sf::Vector2f(x,y),total_ent_count);
+
 
 
 /*
@@ -86,15 +89,22 @@ std::cout  << "total count entityz: "<< total_ent_count << "\n";
 sym_manger->Register_entity(sherbyz);
 sym_manger->Register_entity(mtl);
 sym_manger->Register_entity(tro);
-sym_manger->Register_entity(tst_e2_3);
-sym_manger->Register_entity(tst_e2_4);
+sym_manger->Register_entity(qcity);
+sym_manger->Register_entity(ottw);
+
+
+sym_manger->add_hub_list(sherbyz->get_id());
+sym_manger->add_hub_list(mtl->get_id());
+sym_manger->add_hub_list(tro->get_id());
+sym_manger->add_hub_list(qcity->get_id());
+sym_manger->add_hub_list(ottw->get_id());
 
 
 enity_2_idlist.push_front(sherbyz->get_id());
 enity_2_idlist.push_front(mtl->get_id());
 enity_2_idlist.push_front(tro->get_id());
-enity_2_idlist.push_front(tst_e2_3->get_id());
-enity_2_idlist.push_front(tst_e2_4->get_id());
+enity_2_idlist.push_front(qcity->get_id());
+enity_2_idlist.push_front(ottw->get_id());
 
 
 ///trainz
@@ -109,40 +119,58 @@ Defined_train_path* sher_tro = new Defined_train_path;
 printf("postepathge2n\n");
 sher_tro->addhubtoPath(mtl);
 printf("postepathge3n\n");
+sher_tro->addhubtoPath(ottw);
 sher_tro->addhubtoPath(tro);
 
 //sher_tro->addhubtoPath(tst_e2_3);
 Defined_train_path* tor_sher = new Defined_train_path;
 tor_sher->addhubtoPath(sherbyz);
+sher_tro->addhubtoPath(ottw);
 tor_sher->addhubtoPath(mtl);
+
+Defined_train_path* mtl_tro = new Defined_train_path;
+sher_tro->addhubtoPath(ottw);
+sher_tro->addhubtoPath(tro);
+
 //tor_sher->addhubtoPath(tst_e2_0);
 printf("postepathge4.0n\n");
-enity_1test* tst_e1_t0 = new enity_1test(main_runtime_o,sherbyz ,tro,total_ent_count);
+enity_1test* tst_e1_t0 = new enity_1test(main_runtime_o,sherbyz, tro, total_ent_count);
+enity_1test* tst_e1_t1 = new enity_1test(main_runtime_o, tro, sherbyz, total_ent_count);
+enity_1test* tst_e1_t2 = new enity_1test(main_runtime_o, tro, sherbyz, total_ent_count);
+enity_1test* tst_e1_t3 = new enity_1test(main_runtime_o, sherbyz, tro, total_ent_count);
+enity_1test* tst_e1_t4 = new enity_1test(main_runtime_o, tro, sherbyz, total_ent_count);
 
-enity_1test* tst_e1_t1 = new enity_1test(main_runtime_o,tst_e2_4 , mtl, total_ent_count);
+
 printf("postepathge4.1n\n");
 
 sym_manger->Register_entity(tst_e1_t0);
 sym_manger->Register_entity(tst_e1_t1);
+sym_manger->Register_entity(tst_e1_t2);
+sym_manger->Register_entity(tst_e1_t3);
+sym_manger->Register_entity(tst_e1_t4);
 std::cout  << "total count entityz: "<< total_ent_count << "\n";
 
 printf("post-rgistart trainz.1n\n");
 enity_1_idlist.push_front(tst_e1_t0->get_id());
 enity_1_idlist.push_front(tst_e1_t1->get_id());
-
+enity_1_idlist.push_front(tst_e1_t2->get_id());
+enity_1_idlist.push_front(tst_e1_t3->get_id());
+enity_1_idlist.push_front(tst_e1_t4->get_id());
 //load data into train
 
 
 
 int priority01= 1;
-int priorty02 =3;
-int priorty03=5;
-float speed2 =3;
-float speed5=5;
+int priority02 =3;
+int priority03=5;
+float speed2 =7;
+float speed5=10;
 printf("pre-loadtrainz.1n\n");
-tst_e1_t0->load_data(priority01,speed2,tor_sher);
-
-tst_e1_t1->load_data(priorty02,speed5,sher_tro);
+tst_e1_t0->load_data(priority02,speed2,tor_sher);
+tst_e1_t1->load_data(priority03,speed5,sher_tro);
+tst_e1_t2->load_data(priority03,speed5,tor_sher);
+tst_e1_t3->load_data(priority03,speed5,tor_sher);
+tst_e1_t4->load_data(priority02,speed5,sher_tro);
 /*
 
 tst_e1_1->load_data(priorty02,tor_sher);
@@ -156,17 +184,35 @@ std::cout  << "total count entityz: "<< total_ent_count << "\n";
 //line construction
 printf("prelineconstruct \n");
 R_linez* R_line_01 = new R_linez(sherbyz,mtl,total_ent_count);
-R_linez* R_line_02 = new R_linez(tro,tst_e2_3,total_ent_count);
-
+R_linez* R_line_02 = new R_linez(tro,ottw,total_ent_count);
+R_linez* R_line_03 = new R_linez(mtl,ottw,total_ent_count);
 
 
 sym_manger->Register_entity(R_line_01);
 sym_manger->Register_entity(R_line_02);
+sym_manger->Register_entity(R_line_03);
 
 printf("newlineregistard \n");
 
+
+//hubgiven linesz
+//shr-mtl
+sherbyz->add_line_connection(R_line_01);
+mtl->add_line_connection(R_line_01);
+
+//mtl-ottw
+ottw->add_line_connection(R_line_02);
+tro->add_line_connection(R_line_02);
+
+mtl->add_line_connection(R_line_03);
+ottw->add_line_connection(R_line_03);
+
+
+printf("newlineregistard with their hubz \n");
+
 rail_enity_idlist.push_front(R_line_01->get_id());
 rail_enity_idlist.push_front(R_line_02->get_id());
+rail_enity_idlist.push_front(R_line_03->get_id());
 
 std::cout  << "railine2ID: "<< R_line_02->get_id() << "\n";
 
@@ -181,6 +227,10 @@ window.setFramerateLimit(60);
 std::cout  << "total count entityz: "<< total_ent_count << "\n";
 
 //printf("toalenitycount %s \n", total_ent_count);
+//agent creaorz
+Cmd_agent_v2Operaor agent1;
+
+
 
 /// MAINLOOP
 
@@ -207,7 +257,11 @@ while (window.isOpen())
 
 tst_e1_t0->update();
 tst_e1_t1->update();
-
+tst_e1_t2->update();
+tst_e1_t3->update();
+tst_e1_t4->update();
+agent1.scan_hubs_for_dispatch();
+agent1.dispatchtrain();
 // clear and draw
         window.clear();
 
@@ -224,6 +278,7 @@ tst_e1_t1->update();
     }*/
     R_line_01->draw(window);
     R_line_02->draw(window);
+    R_line_03->draw(window);
 //    printf("railinze comleate \n");
 
         for (std::list<int>::iterator it = enity_2_idlist.begin();
@@ -265,13 +320,17 @@ tst_e1_t1->update();
 sym_manger->removeenity(sherbyz);
 sym_manger->removeenity(mtl);
 sym_manger->removeenity(tro);
-sym_manger->removeenity(tst_e2_3);
-sym_manger->removeenity(tst_e2_4);
+sym_manger->removeenity(qcity);
+sym_manger->removeenity(ottw);
 
 sym_manger->removeenity(tst_e1_t0);
 sym_manger->removeenity(tst_e1_t1);
 
 sym_manger->removeenity(R_line_01);
+sym_manger->removeenity(R_line_02);
+sym_manger->removeenity(R_line_03);
+
+
 
 return 0;
 

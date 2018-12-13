@@ -3,8 +3,8 @@
 #include Cmd_agent_operator
 
 class R_lines;
-class trainz;
-class railhubz;
+//class trainz;
+//class railhubz;
 class Sym_Map;
 
     void Cmd_agent_operator::dispatchtrain()

@@ -17,7 +17,10 @@
         return (inst_enity_map.size());
     }
 
-
+    void Sym_Map::add_hub_list(int id_h)
+    {
+        hub_idlist.push_back(id_h);
+    }
 
      Base_TSym_entity* Sym_Map::get_entity_via_id(int id) const
 
@@ -38,6 +41,16 @@
             inst_enity_map.insert(std::make_pair(newentity->ID(),newentity));
         }
 
+        std::vector<int>* Sym_Map::hublist()
+          {
+          std::vector<int>* prt_hub_id_list = new std::vector<int>(hub_idlist);
+
+              //for(auto it = inst_hub_map.cbegin(); it != inst_hub_map.cend(); ++it)
+            //  {
+                    //     prt_hub_id_list->push_back(it->first);
+            //  }
+              return  prt_hub_id_list;
+          }
 /*
     void Sym_Map::draw_entityz(sf::RenderWindow& window)
     {
@@ -50,17 +63,7 @@
       }
 
 
-          std::vector<int>* Sym_Map::hublist()
-            { std::vector<int>* hub_id_list;
 
-                for(auto it = inst_hub_map.cbegin(); it != inst_hub_map.cend(); ++it)
-                {
-
-
-                           hub_id_list->push_back(it->first);
-                }
-                return  hub_id_list;
-            }
 
 
       */

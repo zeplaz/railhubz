@@ -62,7 +62,7 @@
 
                                 //const  double * drectional_info_train =
                             //                (double const *)(tela.Other_data);
-
+                            printf("movecmd to line\n");
           Acess_Drection =+ (tela.Other_data*vertex_slop);
                                 //else {Acess_Drection =- tela.Other_data;}
                     if (AcessArray_channels[0] == false)
@@ -86,7 +86,7 @@
 
 
         case exit_line :
-
+                printf("exit to line\n");
                 if (AcessArray_channels[1] ==true)
                     {
                       AcessArray_channels[1] =false;
@@ -132,9 +132,9 @@
     }
 
 
-bool R_linez::can_add_train_tochannel(sf::Vector2f* currnt_l, sf::Vector2f* next_l)
-{
-    double temp_distance =  Distance_cal(*currnt_l , *next_l);
+bool R_linez::can_add_train_tochannel(sf::Vector2f currnt_l, sf::Vector2f next_l)
+{ printf("can_add_train_tochannel.1\n");
+    double temp_distance =  Distance_cal(currnt_l , next_l);
 
         if (AcessArray_channels[0] == true && AcessArray_channels[1] == true)
                 {
@@ -149,7 +149,7 @@ bool R_linez::can_add_train_tochannel(sf::Vector2f* currnt_l, sf::Vector2f* next
         if (AcessArray_channels[0] == true && AcessArray_channels[1] == false)
             {
              if (sign(Drectional_dxr(temp_distance,
-                                                *currnt_l,*next_l)) == sign(Acess_Drection))
+                                    currnt_l,next_l)) == sign(Acess_Drection))
                 {
                 return true;
                 }
@@ -158,7 +158,7 @@ bool R_linez::can_add_train_tochannel(sf::Vector2f* currnt_l, sf::Vector2f* next
         if (AcessArray_channels[0] == false && AcessArray_channels[1] == true)
             {
 
-             if (sign(Drectional_dxr(temp_distance,*currnt_l,*next_l))
+             if (sign(Drectional_dxr(temp_distance,currnt_l,next_l))
                             == sign(Acess_Drection))
                {
                return true;

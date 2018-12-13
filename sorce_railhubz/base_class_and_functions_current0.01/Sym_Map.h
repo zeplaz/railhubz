@@ -29,11 +29,14 @@ class Sym_Map
 private:
 
     typedef std::map<int,Base_TSym_entity*> entity_map;
+    //typedef
+
 
 
 private:
 
     int rail_linez;
+                std::vector<int> hub_idlist;
                             //std::map<int,R_linez*> Rail_map;
 
 //inilzate isnaces of maps
@@ -55,13 +58,18 @@ public :
 
     int numberofentities();
 
-    //    std::vector<int>* hublist();
+
+        std::vector<int>* hublist();
 
         void Register_entity(Base_TSym_entity* newentity);
 
         Base_TSym_entity* get_entity_via_id(int id)const;
 
         void removeenity(Base_TSym_entity* ptr_entity);
+
+        void add_hub_list(int id_h);
+
+
 
     //void     Draw_maped_enties(sf::RenderWindow& window);
 
