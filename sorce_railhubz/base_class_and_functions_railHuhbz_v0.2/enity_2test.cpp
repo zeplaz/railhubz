@@ -108,3 +108,4 @@ void enity_2test::add_train_toque(enity_1test* traintoQues)
 {
     train_quez.push(traintoQues);
 }
+*/

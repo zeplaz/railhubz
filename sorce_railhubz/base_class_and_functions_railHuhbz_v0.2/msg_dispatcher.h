@@ -12,6 +12,9 @@ from base classes, the hubs, are not of the same object type and do not inhearnt
 this msgsing service. but they could have thier OWN, msgs system
 */
 
+
+
+
 #pragma once
 
 #include <set>
@@ -36,7 +39,7 @@ class msg_dispatcher
 {
     private:
 
-        std::set<telagram> dispatch_time_que;
+        //std::set<telagram> dispatch_time_que;
 
         void call_receiver_transmit(Base_TSym_entity* prt_receiver,
                                     const telagram& tela);
@@ -47,13 +50,13 @@ class msg_dispatcher
         msg_dispatcher& operator =(const msg_dispatcher&);
 
     public:
-
+        //void  trazmit_telagram(const telagram& tela);
         static msg_dispatcher* instance();
 
         void trazmit_telagram( double time, int sender,
                         int reciver, float priority, int msg, double other_data);
 
-        void trazmit_delayed_telagram();
+        //void trazmit_delayed_telagram();
 
-
+        ~msg_dispatcher(){}
 };

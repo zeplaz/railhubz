@@ -53,16 +53,14 @@
 
  bool R_linez::Handle_telagram(const telagram& tela)
 {
-
+    printf("inHandletella_line");
     switch (tela.msg)
         {
 
         case enter_line :
-        {             //   if (tela.Other_data > 0)
+        {
+         printf("movecmd to line\n");
 
-                                //const  double * drectional_info_train =
-                            //                (double const *)(tela.Other_data);
-                            printf("movecmd to line\n");
           Acess_Drection =+ (tela.Other_data*vertex_slop);
                                 //else {Acess_Drection =- tela.Other_data;}
                     if (AcessArray_channels[0] == false)
@@ -76,9 +74,9 @@
             time_t msgcurrnt = clock();
             double temp_id_dbforpackt= (double)this->get_id();
 
-           telagram  cmd_telamove(0,this->line_id,tela.sender,
-                                 -1,move_cmd,temp_id_dbforpackt);
-                                 this->Handle_telagram(cmd_telamove);
+
+                     tranzmitor->trazmit_telagram(0,this->line_id,tela.sender,
+                                           -1,move_cmd,temp_id_dbforpackt);
 
             return true;
             break;

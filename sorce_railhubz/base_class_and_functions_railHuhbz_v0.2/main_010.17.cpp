@@ -15,10 +15,10 @@
 #include <algorithm>
 #include <time.h>
 #include <list>
-//#include "test_entity1.h"
 #include <iostream>
 
 #include "Cmd_agent_v2Operaor.h"
+#include "msg_dispatcher.h"
 
 int main ()
 
@@ -135,26 +135,27 @@ sher_tro->addhubtoPath(tro);
 //tor_sher->addhubtoPath(tst_e2_0);
 printf("postepathge4.0n\n");
 enity_1test* tst_e1_t0 = new enity_1test(main_runtime_o,sherbyz, tro, total_ent_count);
-enity_1test* tst_e1_t1 = new enity_1test(main_runtime_o, tro, sherbyz, total_ent_count);
+//enity_1test* tst_e1_t3 = new enity_1test(main_runtime_o, sherbyz, tro, total_ent_count);
+
+//enity_1test* tst_e1_t1 = new enity_1test(main_runtime_o, tro, sherbyz, total_ent_count);
 enity_1test* tst_e1_t2 = new enity_1test(main_runtime_o, tro, sherbyz, total_ent_count);
-enity_1test* tst_e1_t3 = new enity_1test(main_runtime_o, sherbyz, tro, total_ent_count);
 enity_1test* tst_e1_t4 = new enity_1test(main_runtime_o, tro, sherbyz, total_ent_count);
 
 
 printf("postepathge4.1n\n");
 
 sym_manger->Register_entity(tst_e1_t0);
-sym_manger->Register_entity(tst_e1_t1);
+//sym_manger->Register_entity(tst_e1_t1);
 sym_manger->Register_entity(tst_e1_t2);
-sym_manger->Register_entity(tst_e1_t3);
+//sym_manger->Register_entity(tst_e1_t3);
 sym_manger->Register_entity(tst_e1_t4);
 std::cout  << "total count entityz: "<< total_ent_count << "\n";
 
 printf("post-rgistart trainz.1n\n");
 enity_1_idlist.push_front(tst_e1_t0->get_id());
-enity_1_idlist.push_front(tst_e1_t1->get_id());
+//enity_1_idlist.push_front(tst_e1_t1->get_id());
 enity_1_idlist.push_front(tst_e1_t2->get_id());
-enity_1_idlist.push_front(tst_e1_t3->get_id());
+//enity_1_idlist.push_front(tst_e1_t3->get_id());
 enity_1_idlist.push_front(tst_e1_t4->get_id());
 //load data into train
 
@@ -166,11 +167,12 @@ int priority03=5;
 float speed2 =7;
 float speed5=10;
 printf("pre-loadtrainz.1n\n");
-tst_e1_t0->load_data(priority02,speed2,tor_sher);
-tst_e1_t1->load_data(priority03,speed5,sher_tro);
+tst_e1_t0->load_data(priority02,speed2,sher_tro);
+//tst_e1_t3->load_data(priority03,speed5,sher_tro);
+
+//tst_e1_t1->load_data(priority03,speed5,tor_sher);
 tst_e1_t2->load_data(priority03,speed5,tor_sher);
-tst_e1_t3->load_data(priority03,speed5,tor_sher);
-tst_e1_t4->load_data(priority02,speed5,sher_tro);
+tst_e1_t4->load_data(priority02,speed5,tor_sher);
 /*
 
 tst_e1_1->load_data(priorty02,tor_sher);
@@ -256,10 +258,11 @@ while (window.isOpen())
 
 
 tst_e1_t0->update();
-tst_e1_t1->update();
+//tst_e1_t1->update();
 tst_e1_t2->update();
-tst_e1_t3->update();
+//tst_e1_t3->update();
 tst_e1_t4->update();
+
 agent1.scan_hubs_for_dispatch();
 agent1.dispatchtrain();
 // clear and draw
@@ -324,7 +327,7 @@ sym_manger->removeenity(qcity);
 sym_manger->removeenity(ottw);
 
 sym_manger->removeenity(tst_e1_t0);
-sym_manger->removeenity(tst_e1_t1);
+//sym_manger->removeenity(tst_e1_t1);
 
 sym_manger->removeenity(R_line_01);
 sym_manger->removeenity(R_line_02);

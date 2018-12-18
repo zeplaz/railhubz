@@ -14,10 +14,14 @@
 #include "Defined_train_path.h"
 
 #include <time.h>
+#include <iostream>
+//#include <R_linez.h>
 
 struct telagram;
 class Defined_train_path;
 class enity_2test;
+
+
 //class vector_math;
 
 //typedef Defined_train_path paths_for_train;
@@ -51,23 +55,14 @@ double train_y;
    double distance_traveld=0;
     bool arived_f = false;
     double active_line;
+    double  dre_dxr;
     bool is_halt = true;
 
     int tr_priority =-1;
+    //R_linez* currentline;
 
+    double Drectional_dxr(double L,sf::Vector2f C_vec1,sf::Vector2f D_vec2);
 
-
-
-    double Drectional_dxr(double L,sf::Vector2f C_vec1,sf::Vector2f D_vec2)
-       {
-           double S;
-           double mx =D_vec2.x-C_vec1.x;
-           double my= D_vec2.x-C_vec1.x;
-           S = (mx)/(my);
-
-
-           return (S*(mx/L)+(mx/L)/S);
-       };
 
 public :
     enity_2test* next_station;

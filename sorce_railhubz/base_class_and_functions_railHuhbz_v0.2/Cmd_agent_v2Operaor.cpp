@@ -19,8 +19,13 @@ void Cmd_agent_v2Operaor::dispatchtrain()
             priority_train_paket = trainpriorty_master_que.top();
             printf("dispatchtrain2\n");
             temp_train = dynamic_cast<enity_1test*> (sym_manger->get_entity_via_id(priority_train_paket.train_id));
+                printf("dispatchtrain3\n");
+            std::cout << "premove:lineid" << priority_train_paket.line_id << "move for train id:"<< priority_train_paket.train_id << std::endl;
             temp_train->move(priority_train_paket.line_id);
+
+                printf("dispatchtrain4\n");
             trainpriorty_master_que.pop();
+            //trainpriorty_master_que.pop();
 
         }
     }

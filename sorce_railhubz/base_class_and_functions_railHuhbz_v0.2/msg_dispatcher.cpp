@@ -7,6 +7,7 @@
 
     msg_dispatcher* msg_dispatcher::instance()
         {
+            printf("msg_dis_alizaed");
         static msg_dispatcher instance;
         return &instance;
         }
@@ -21,22 +22,33 @@
             }
         }
 
+    /*void  msg_dispatcher::trazmit_telagram(const telagram& tela)
+{
+
+    if (time<=0.0f)
+         {
+            printf(" dispatch of undelayed msg at: %s \n",clock());
+            call_receiver_transmit(tela.reciver,tela);}
+
+
+}*/
+
 
     void  msg_dispatcher::trazmit_telagram( double time, int sender,
                                             int reciver, float priority,
                                             int msg, double other_data)
 
-    {
-        Base_TSym_entity* prt_sender = sym_manger->get_entity_via_id(sender);
+    { printf("inside tramiz_tella1");
+    //    Base_TSym_entity* prt_sender = sym_manger->get_entity_via_id(sender);
         Base_TSym_entity* prt_reciver = sym_manger->get_entity_via_id(reciver);
 
             //double currnent_t = Clock::now();
-            time_t currnent_t = clock();
+            //time_t currnent_t = clock();
 
-            if (prt_reciver== NULL)
-               { printf("inproper ID, of reciver: %s \n", reciver);}
+            //if (prt_reciver== NULL)
+             //  { printf("inproper ID, of reciver: %s \n", reciver);}
 
-        telagram tela_prep(0,sender,reciver,msg, priority, other_data);
+        telagram tela_prep(0,sender,reciver,  priority, msg, other_data);
 
             if (time<=0.0f)
                  { printf(" dispatch of undelayed msg at: %s \n",clock());
@@ -46,7 +58,7 @@
 
                  call_receiver_transmit(prt_reciver, tela_prep);
                  }
-
+/*
             else
             {
                 tela_prep.trazmission_t+time;
@@ -55,14 +67,14 @@
                 printf("msg %r has been added to que at: %s \n",
                 clock());
 
-            }
+            }*/
 
     }
 
 
 /// delaytremzitonz
 
-
+/*
 void msg_dispatcher::trazmit_delayed_telagram()
 {
             time_t currnent_t = clock();
@@ -82,3 +94,4 @@ void msg_dispatcher::trazmit_delayed_telagram()
         dispatch_time_que.erase(dispatch_time_que.begin());
     }
 }
+*/

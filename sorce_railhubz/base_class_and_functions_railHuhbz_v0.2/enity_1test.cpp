@@ -1,5 +1,5 @@
 #include "enity_1test.h"
-#include <iostream>
+
 
 enity_1test::~enity_1test() {}
 
@@ -42,7 +42,7 @@ void enity_1test::load_data(double priority, float spd, Defined_train_path* path
     distance_toNext_from_last= sqrt(abs((currentLocation.x*next_hub_location.x) + (currentLocation.y*next_hub_location.y )));
   printf("intializationload data %s locaioanl drection: %f %r \n",distance_toNext_from_last ,next_hub_location.y ,next_hub_location.y);
 
-                 }
+                   }
 
 
                  void enity_1test::draw(sf::RenderWindow &window)
@@ -114,14 +114,6 @@ void enity_1test::load_data(double priority, float spd, Defined_train_path* path
         }
 
 
-
-
-
-
-
-
-
-
     void enity_1test::hault()
 
     {
@@ -153,14 +145,16 @@ void enity_1test::load_data(double priority, float spd, Defined_train_path* path
                     distance_toNext_from_last= sqrt(abs(currentLocation.x*next_hub_location.x)
                                                 + abs(currentLocation.y*next_hub_location.y));
 
-                                                double dre_dxr=  Drectional_dxr(distance_toNext_from_last,
-                                                        currentLocation,next_hub_location );
-                                                        int tempt_id = (int)active_line;
-                                                telagram  cmd_exitLine(0,entity_1_id,tempt_id,
-                                                                      -1,exit_line,dre_dxr);
-                                                                      this->Handle_telagram(cmd_exitLine);
+                     dre_dxr=  Drectional_dxr(distance_toNext_from_last,
+                                                    currentLocation,next_hub_location );
 
-                                                            active_line =-1;
+                    int tempt_id = (int)active_line;
+                    std::cout << "line active ID:" << active_line;
+                //    tranzmitor->trazmit_telagram(0.f,entity_1_id,tempt_id,
+            //                                    -1.f,exit_line,dre_dxr);
+
+                    active_line =-1;
+
                     printf("train is in updatehublv5 reutn from nextlocationget.\n");
 
                     //Next_hub_on_j = trainz_currnet_path->get_next_hub();
@@ -177,17 +171,35 @@ void enity_1test::load_data(double priority, float spd, Defined_train_path* path
   void enity_1test::move(int ent_line_id)
 
   {
+       printf("in train entity given moveorder2\n");
           is_halt = false;
           train_enity_cra= clock();
+           printf("in train entity given moveorder2\n");
            active_line = ent_line_id;
            cr_traingraphic.setFillColor(sf::Color::Magenta);
+           printf("in train entity given moveorder3\n");
+
+
+           double line_blocker;
+           line_blocker = (currentLocation.x* next_hub_location.x*next_hub_location.y*currentLocation.x);
+           std::cout << "info drivite?: disnex-last: " << distance_toNext_from_last << std::endl;
+
+        //  tranzmitor->trazmit_telagram(0.f, entity_1_id, ent_line_id,
+                //                 0.f,enter_line, line_blocker);
+/*
+
           double dre_dxr= Drectional_dxr(distance_toNext_from_last,
                   currentLocation, next_hub_location);
 
-                  telagram  cmd_telmove(0, this->get_id(), ent_line_id,
-                                        -1,enter_line, dre_dxr);
- printf("train is msged to move telling line\n");
-       this->Handle_telagram(cmd_telmove);
+
+                 // telagram  cmd_telmove(0, this->get_id(), ent_line_id,
+                //                        -1,enter_line, dre_dxr);
+        printf("train is msged to move telling line: %s \n",ent_line_id );
+
+
+
+
+                             */
 
   }
 
@@ -258,3 +270,27 @@ return vec1.x*vec2.x + vec1.y*vec2.y;
 return (temp_move_vec);
 
 }
+
+
+double enity_1test::Drectional_dxr(double L,sf::Vector2f C_vec1,sf::Vector2f D_vec2)
+   {    printf("in drx\n ");
+       double S;
+       double mx = D_vec2.x-C_vec1.x;
+       double my = D_vec2.x-C_vec1.x;
+      std::cout << "mx: " << mx << "my" << my << std::endl;
+
+      if (mx==my)
+      {
+            printf("prereutn mx==my");
+            return ((mx*L)*(my*L));
+      }
+
+        if (mx!= my)
+        {
+            S = (mx)/(my);
+            printf("in drx3");
+           return (S*(mx/L)+(mx/L)/S);
+       }
+
+
+   }

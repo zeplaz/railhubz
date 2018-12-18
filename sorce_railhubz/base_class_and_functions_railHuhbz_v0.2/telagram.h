@@ -32,8 +32,8 @@ struct telagram
 double trazmission_t;
 int sender;
 int receiver;
-int msg;
 float priority;
+int msg;
 double Other_data;
 
 telagram():
