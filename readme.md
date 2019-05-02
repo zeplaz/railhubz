@@ -1,11 +1,12 @@
 
 # railhubz
-### Build for Oprating Systems Course
-
+#### Build for Oprating Systems Course
+### Uses Message disspatcher, and enitity framwork, communcating singleing to an operator gainign information from an indpendent hubsystem 
 #### program uses, sfml lib for graphics.
 
-## |_|Folderz|_|
 
+
+## |_|Folderz|_|
 ### -[etcz]-
 extra code and file bits on deisgn, and other conceptes and notes.
 
