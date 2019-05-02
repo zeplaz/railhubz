@@ -1,28 +1,28 @@
 
-## railhubz
-#### Build for Oprating Systems Course
+# railhubz
+### Build for Oprating Systems Course
 
-##### program uses, sfml lib for graphics.
+#### program uses, sfml lib for graphics.
 
-###|_|Folderz|_|
+## |_|Folderz|_|
 
-#### -[etcz]-
+### -[etcz]-
 extra code and file bits on deisgn, and other conceptes and notes.
 
-#### -[sorce_railhubz]-
+### -[sorce_railhubz]-
 
 Contains all sorcecode and other older builds and work related to program.
 
 ###### most recent Main:
 ###### sorce_railhubz/test/newMain_testbuild_nov14.cpp
 
-#### |{-dossairz-}|
+### |{-dossairz-}|
 
-##### base_class_and_functions_railHuhbz_v0.2
-##### cmd_agent_sorce 	
-##### odlervs 
-##### railhubz_0.07.2
-##### test
+#### base_class_and_functions_railHuhbz_v0.2
+#### cmd_agent_sorce 	
+#### odlervs 
+#### railhubz_0.07.2
+#### test
 
 
 
