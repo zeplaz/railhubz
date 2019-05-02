@@ -1,7 +1,31 @@
 
 ## railhubz
+#### Build for Oprating Systems Course
 
-program uses, sfml lib for graphics.
+##### program uses, sfml lib for graphics.
+
+###|_|Folderz|_|
+
+#### -[etcz]-
+extra code and file bits on deisgn, and other conceptes and notes.
+
+#### -[sorce_railhubz]-
+
+Contains all sorcecode and other older builds and work related to program.
+
+###### most recent Main:
+###### sorce_railhubz/test/newMain_testbuild_nov14.cpp
+
+#### |{-dossairz-}|
+
+##### base_class_and_functions_railHuhbz_v0.2
+##### cmd_agent_sorce 	
+##### odlervs 
+##### railhubz_0.07.2
+##### test
+
+
+
 cmd_agent uses a que to scan hubs for avalable trains
 the lines and trains communcate via a msg_dispatcher to calculate avalablity
 train paths are hardcoded.(not that i ddi not try to get a*star working,...
