@@ -32,7 +32,6 @@ class enity_1test: public Base_TSym_entity
 private :
 
 
-    sf::CircleShape cr_traingraphic;
 
    int entity_1_id;
    time_t train_enity_cra;
@@ -40,8 +39,9 @@ private :
 
        int speed;
 
-double train_x;
-double train_y;
+       double train_x;
+       double train_y;
+
     enity_2test* start_station;
     enity_2test* end_station;
     int currnet_station_id=-1;
