@@ -23,7 +23,7 @@
                                          float RL_x2 = temp2.y;
                                          float RL_y2 = temp2.y;
 
-     vertex_slop =(RL_x1 - RL_y2)/(RL_x1-RL_x2);
+     vertex_slop =(RL_y1 - RL_y2)/(RL_x1-RL_x2);
                  printf("info about temp1 posx  posy  vertexslop: %h \n",vertex_slop);
                                         //        x, y ,vertex_slop ); //,x,y,);
                                                      //%f y %a info about slop %s
@@ -120,7 +120,6 @@
     void R_linez::draw(sf::RenderWindow &window)
     {
         window.draw(rail_linez_array);
-
     }
 
 

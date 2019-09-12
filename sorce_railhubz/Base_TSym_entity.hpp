@@ -13,7 +13,7 @@ class Base_TSym_entity
 {
   private:
 
-  extern int be_id;
+  int be_id;
   static int be_NextValidID;
 
   //testz the id.

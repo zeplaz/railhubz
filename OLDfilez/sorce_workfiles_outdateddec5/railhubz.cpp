@@ -19,7 +19,7 @@ std::priority_queue<trainz*,std::vector<trainz*>,
                     Priorty_for_station_que> Trainprotyque;
 
 
-    railhubz::~railhubz(){printf("destructorcallrailzhubz\n");}
+railhubz::~railhubz(){printf("destructorcallrailzhubz\n");}
 
 railhubz::railhubz(time_t& orgin, sf::Vector2f hub_l, int& hubz_countz)
 {

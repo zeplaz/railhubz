@@ -30,7 +30,7 @@ class Sym_Map
 private:
 
     typedef std::map<int,Base_TSym_entity*> entity_map;
-    typedef std::map<int,railhubz*> Hubz_map;
+    typedef std::map<int,railhubz*> hubz_map;
 
 
 private:
@@ -80,10 +80,9 @@ public :
     //void     Draw_maped_enties(sf::RenderWindow& window);
 
     void  draw_trainz(sf::RenderWindow& window);
-    void draw_linez(sf::RenderWindow& window);
-    void     draw_hubz(sf::RenderWindow& window);
-
-        float get_cartesian_plane(bool H_1_W_0, float plane);
+    void  draw_linez(sf::RenderWindow& window);
+    void  draw_hubz(sf::RenderWindow& window);
+    float get_cartesian_plane(bool H_1_W_0, float plane);
 
 
 //void addLinez(int& Line_id, R_linez& newRline);
