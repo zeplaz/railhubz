@@ -63,13 +63,13 @@ int main(int argc, char** argv)
     printf("dst = \"%s\", r = %d\n", dst, r);
 #endif
 
-    R_linez line1(total_entiez);
-    R_linez line2(total_entiez);
+    R_linez line1;
+    R_linez line2;
 
     line1.initialize(12.f, 100.f, 30.f,50.f);
     line2.initialize(120.f, 10.f, 20.f,100.f);
-    trainz train_1(total_entiez);
-    trainz train_2(total_entiez);
+    trainz train_1;
+    trainz train_2;
     //create window and framez
 
     sf::RenderWindow p_window (sf::VideoMode(700,800), "Test_hub1");

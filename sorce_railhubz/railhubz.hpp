@@ -24,9 +24,12 @@ class trainz;
     public :
       railhubz(sf::Vector2f hub_l);
       ~railhubz() = default;
-      inline size_t get_ID()
+      inline size_t get_ID() const
       {return hub_id;}
-
+      inline size_t get_next_id()
+      {
+        return next_hub_id;
+      }
       sf::Vector2f get_location() const;
       void draw(sf::RenderWindow &window);
       void add_train_toque(trainz* tr_prt);

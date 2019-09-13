@@ -4,13 +4,17 @@
 //stdlibz
 #include <cassert>
 
-int Base_TSym_entity::be_NextValidID = 0;
-int be_id;
+//int Base_TSym_entity::be_NextValidID = 0;
 
-void Base_TSym_entity::set_id(int val)
+Base_TSym_entity::Base_TSym_entity(int& id_in)
+{
+  set_id(id_in);
+}
+
+void Base_TSym_entity::set_id(int& val)
   {
-    assert ((val>=be_NextValidID)&& "<Base_TSym_entity::set_id: broken ID>");
+    //assert ((val>=be_NextValidID)&& "<Base_TSym_entity::set_id: broken ID>");
+    val = be_NextValidID;
     be_id = val;
-
     be_NextValidID = be_id+1;
   }

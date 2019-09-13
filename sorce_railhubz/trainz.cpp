@@ -33,7 +33,7 @@ void trainz::hault()
       else
       {
         tr_positional.active_line = -1;
-      //  next_station->;
+         //  next_station->;
         //next_station = train_route.get_next_hub();
         //tr_positional.next_hub_loc = next_station->get_location();
         tr_positional.diz_next_hub = mathz::distance_euclidean(tr_positional.currentLocation.x,
@@ -41,7 +41,7 @@ void trainz::hault()
                                                 tr_positional.currentLocation.y,
                                                 tr_positional.next_hub_loc.y);
 
-            }
+       }
     }
     tr_positional.is_halt = true;
   }

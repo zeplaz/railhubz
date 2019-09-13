@@ -43,11 +43,8 @@
 
     public :
       ~trainz() = default;
-      trainz(int& total_enty) : Base_TSym_entity(total_enty)
-      {
-        train_id = total_enty;
-        total_enty++;
-      }
+      trainz() : Base_TSym_entity(train_id){}
+
 
       void update();
       bool Handle_telagram(const telagram& tela){};
@@ -88,11 +85,8 @@ class R_linez : public Base_TSym_entity
 
   public :
     ~R_linez() = default;
-     R_linez(int& total_enty) : Base_TSym_entity(total_enty)
-    {
-      line_id = total_enty;
-      total_enty++;
-    }
+     R_linez() : Base_TSym_entity(line_id){}
+
 
     void update(){};
     bool Handle_telagram(const telagram& tela){};

@@ -14,26 +14,27 @@ class Base_TSym_entity
   private:
 
   int be_id;
-  static int be_NextValidID;
+  inline static int be_NextValidID = 0;
 
   //testz the id.
-  void set_id(int val);
+  void set_id(int& val);
 
 public :
 
- Base_TSym_entity(int be_id)
-    {set_id(be_id);}
+ Base_TSym_entity(int& id_in);
+
 
 virtual ~Base_TSym_entity(){};
 
 virtual void update() = 0;
 
-virtual  bool Handle_telagram(const telagram& tela)= 0;
+virtual  bool Handle_telagram(const telagram& tela) {return false;}
 
 //virtual void draw(sf::RenderWindow &window)= 0;
 
-int get_ID() const {return be_id;}
-
+inline int get_ID() const {return be_id;}
+//inline int
+inline static int get_next_id() { return be_NextValidID;}
 };
 
 #endif
