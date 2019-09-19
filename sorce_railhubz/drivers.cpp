@@ -190,6 +190,7 @@
   }
 
 
+//parsed data can thus be used in HERE!!!!!!---> to setup the whole systemz
   void driver::initializer()
   {
     std::string rail_type1 = "rail01";
