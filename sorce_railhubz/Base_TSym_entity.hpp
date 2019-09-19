@@ -4,7 +4,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-//#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 //#include <SFML/Window.hpp>
 #include "telagram.h"
 
@@ -30,7 +30,7 @@ virtual void update() = 0;
 
 virtual  bool Handle_telagram(const telagram& tela) {return false;}
 
-//virtual void draw(sf::RenderWindow &window)= 0;
+virtual void draw(sf::RenderWindow &window)= 0;
 
 inline int get_ID() const {return be_id;}
 //inline int

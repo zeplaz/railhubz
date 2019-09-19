@@ -17,7 +17,7 @@ void R_linez::draw(sf::RenderWindow &window)
      {return true;}
  }
 
- void R_linez::initialize(float hub1_x,float hub1_y, float hub2_x, float hub2_y)
+ void R_linez::set_pos(float hub1_x,float hub1_y, float hub2_x, float hub2_y)
  {
    sf::Vertex rail_L_vertex;
    sf::Vector2f sfvec;

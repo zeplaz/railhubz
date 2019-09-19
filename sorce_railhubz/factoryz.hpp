@@ -7,16 +7,21 @@
 #include <memory>
 #include <string>
 
+
 namespace system_org
 {
   class entity_factory
   {
     public :
+     //void (*fac_reg_calbk)(Base_TSym_entity*);
      virtual ~entity_factory() = default;
-     Base_TSym_entity* request_entity();
+     void request_entity();
      size_t get_num_entityz_produced() const;
+     bool bussy = false;
+
 
     protected :
+
      virtual Base_TSym_entity* create_entity() = 0;
 
     private :
@@ -44,23 +49,24 @@ namespace system_org
 
   class factory_ctlr : entity_factory
   {
+
     public :
-      explicit factory_ctlr(std::vector<std::unique_ptr<entity_factory>>&& factoryz){};
-      factory_ctlr(){};
+      explicit factory_ctlr(std::vector<std::shared_ptr<entity_factory>>&& factoryz){};
+      factory_ctlr() = default;
       virtual ~factory_ctlr()= default;
 
       void register_factory_group(std::pair<std::string,
-                                  std::vector<std::unique_ptr
+                                  std::vector<std::shared_ptr
                                   <entity_factory>>> in_fac_group);
 
       void add_factory_to_ctlgroup(std::string f_name,
-                                   std::unique_ptr<system_org::entity_factory> in_fac);
-    //void scan_producerz(std::string);
+                                   std::shared_ptr<system_org::entity_factory> in_fac);
+
+      std::shared_ptr<entity_factory> scan_factoryz(std::string f_name);
     protected :
       virtual Base_TSym_entity* create_entity() override;
-
     private :
-      std::unordered_map<std::string,std::vector<std::unique_ptr
+      std::unordered_map<std::string,std::vector<std::shared_ptr
                         <entity_factory>>> factory_map;
   };
 

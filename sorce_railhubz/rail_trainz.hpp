@@ -16,35 +16,40 @@
 
   class railhubz;
 
-  struct trnz_positional
-  {
-    int current_station_id;
-    steady_clock::time_point entry_time;
-    int active_line;
-    sf::Vector2f currentLocation;
-    sf::Vector2f next_hub_loc;
 
-    double diz_next_hub;
-    double diz_traveled;
-
-    bool arrived_final = false;
-    bool is_halt = false;
-  };
 
   class trainz :  public Base_TSym_entity
   {
     protected :
+
+    struct trnz_positional
+    {
+      int current_station_id;
+      steady_clock::time_point entry_time;
+      int active_line;
+      sf::Vector2f currentLocation;
+      sf::Vector2f next_hub_loc;
+
+      double diz_next_hub;
+      double diz_traveled;
+
+      bool arrived_final = false;
+      bool is_halt = false;
+    };
+
       int train_id;
       sf::CircleShape cr_traingraphic;
       float tr_priority = 1.f;
       int t_speed=1;
-      trnz_positional tr_positional;
+      trainz::trnz_positional tr_positional;
       Defined_train_path<railhubz> train_route;
 
     public :
       ~trainz() = default;
       trainz() : Base_TSym_entity(train_id){}
-
+      trainz(trainz&& train_m) noexcept = default;
+      trainz& operator = (const trainz&) = default;
+      trainz& operator = (trainz&&) = default;
 
       void update();
       bool Handle_telagram(const telagram& tela){};
@@ -95,7 +100,7 @@ class R_linez : public Base_TSym_entity
 
     inline int get_ID() {return line_id;}
 
-    void initialize (float hub1_x,float hub1_y, float hub2_x, float hub2_y);
+    void set_pos (float hub1_x,float hub1_y, float hub2_x, float hub2_y);
 
 
 

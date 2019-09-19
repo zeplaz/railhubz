@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <functional>
 
 #include "railhubz.hpp"
 #include "factoryz.hpp"
@@ -33,12 +34,15 @@ namespace system_org
       system_org::factory_ctlr mfactory_ctrlr;
 
     public :
-    void insert_facgroup_ctrl(std::string f_name,                                          
-                             std::vector<std::unique_ptr
+    std::vector<int> r_line_id_list;
+    std::vector<int> train_id_list;
+    std::vector<size_t> hub_id_list;
+    void insert_facgroup_ctrl(std::string f_name,
+                             std::vector<std::shared_ptr
                             <entity_factory>> in_fac);
 
     void add_factory(std::string e_name,
-                     std::unique_ptr<entity_factory> factory);
+                     std::shared_ptr<entity_factory> factory);
 
       static Sym_Map& instance();
 
@@ -51,6 +55,9 @@ namespace system_org
       railhubz* get_hub(size_t id) const;
       void Register_rail_entity(Base_TSym_entity* newentity);
       Base_TSym_entity* get_rail_entity(int id)const;
+      void activate_factory(std::string);
+      void render_entiez(sf::RenderWindow &window);
+
 
   };
 }
