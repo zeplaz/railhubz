@@ -19,20 +19,20 @@
 
 <hubz>
 <name>mtl</name>
-<x>200</x>
-<y>100</y>
+<x>100</x>
+<y>70</y>
 </hubz>
 
 <hubz>
 <name>qcity</name>
-<x>300</x>
+<x>40</x>
 <y>400</y>
 </hubz>
 
 <hubz>
 <name>shrbyz</name>
 <x>70</x>
-<y>550</y>
+<y>50</y>
 </hubz>
 
 <R_linez>

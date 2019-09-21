@@ -11,6 +11,7 @@
 #include "railhubz.hpp"
 #include "factoryz.hpp"
 
+
 #define sym_manger system_org::Sym_Map::instance()
 
 class Base_TSym_entity;
@@ -57,7 +58,7 @@ namespace system_org
       Base_TSym_entity* get_rail_entity(int id)const;
       void activate_factory(std::string);
       void render_entiez(sf::RenderWindow &window);
-
+      void render_hubz(sf::RenderWindow &window);
 
   };
 }

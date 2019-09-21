@@ -4,10 +4,12 @@
 //sdlib
 #include <vector>
 #include <queue>
+#include <string>
 //sfml libz
 #include <SFML/Graphics.hpp>
 //mylibz
 #include "rail_trainz.hpp"
+#include "parser.hpp"
 
 class R_linez;
 class trainz;
@@ -16,15 +18,15 @@ class trainz;
   {
     protected :
       inline static size_t next_hub_id = 0;
-      size_t hub_id;
+      int hub_id;
       sf::CircleShape cr_hubgraphic;
       sf::Vector2f hub_location;
       std::vector<R_linez*> line_connections;
       std::priority_queue<trainz*> train_que;
     public :
-      railhubz(sf::Vector2f hub_l);
+      railhubz(std::string name,sf::Vector2f hub_l);
       ~railhubz() = default;
-      inline size_t get_ID() const
+      inline int get_ID() const
       {return hub_id;}
       inline size_t get_next_id()
       {

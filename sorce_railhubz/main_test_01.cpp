@@ -44,7 +44,7 @@ int main(int argc, char** argv)
       p_window.clear();
       //move to a thread!
       sym_manger.render_entiez(p_window); //not hubz only raillinz and trainz...
-
+      sym_manger.render_hubz(p_window); 
       p_window.display();
 
     }//end mainwindowloop

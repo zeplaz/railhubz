@@ -70,4 +70,16 @@ namespace system_org
                         <entity_factory>>> factory_map;
   };
 
+  class hub_factory
+  {
+    public :
+    railhubz* request_entity(std::string id_in,float x, float y);
+    inline size_t get_num_entityz_produced() const {return number_of_hubzProduced;}
+    bool bussy = false;
+
+
+   private :
+    size_t number_of_hubzProduced = 0;
+  };
+
 }

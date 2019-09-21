@@ -1,10 +1,10 @@
 //railhubz.cpp
 #include "railhubz.hpp"
 
-railhubz::railhubz(sf::Vector2f hub_l)
+railhubz::railhubz(std::string name,sf::Vector2f hub_l)
+
 {
-  hub_id = next_hub_id;
-  next_hub_id++;
+  hub_id = parser::str2int_run(name.c_str());
 
   hub_location = hub_l;
   cr_hubgraphic.setRadius(20.f);
