@@ -1,0 +1,78 @@
+<!--config_trainz.xml-->
+
+<?xml version="1.0" standalone="yes" encoding="utf-8"?>
+
+<!DOCTYPE main_conf [
+<!ELEMENT hubz(name,x,y)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT x (#PCDATA)>
+<!ELEMENT y (#PCDATA)>
+
+<!ELEMENT R_linez(xy1,xy2)>
+<!ELEMENT xy1 (#PCDATA)>
+<!ELEMENT xy2 (#PCDATA)>
+
+]>
+
+<main_conf>
+<entityz>
+
+<hubz>
+<name>mtl</name>
+<x>200</x>
+<y>120</y>
+</hubz>
+
+<hubz>
+<name>qcity</name>
+<x>400</x>
+<y>100</y>
+</hubz>
+
+<hubz>
+<name>shrbyz</name>
+<x>250</x>
+<y>500</y>
+</hubz>
+
+<R_linez>
+<xy1>shrbyz</xy1>
+<xy2>qcity</xy2>
+</R_linez>
+
+<R_linez>
+<xy1>mtl</xy1>
+<xy2>qcity</xy2>
+</R_linez>
+
+<R_linez>
+<xy1>shrbyz</xy1>
+<xy2>mtl</xy2>
+</R_linez>
+
+</entityz>
+
+<routeing>
+
+<trainz_path>
+mtl->shrbyz->qcity
+</trainz_path>
+
+<trainz_path>
+shrbyz->mtl->qcity
+</trainz_path>
+
+<trainz_path>
+qcity->mtl->shrbyz
+</trainz_path>
+
+</routeing>
+
+<num_trainz_str>
+<mtl> 3 </mtl>
+<shrbyz>2</shrbyz>
+<qcity>4</qcity>
+</num_trainz_str>
+
+
+</main_conf>

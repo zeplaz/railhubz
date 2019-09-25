@@ -94,8 +94,8 @@ void enity_1test::load_data(double priority, float spd, Defined_train_path* path
 
                 normilzec_vec = normalize_and_Drectional_vector(distance_toNext_from_last,currentLocation,next_hub_location.x,next_hub_location.y);
 
-                currentLocation.x     =normilzec_vec.x*vilocity_td;
-                currentLocation.y   =normilzec_vec.y*vilocity_td;
+                currentLocation.x   = normilzec_vec.x*vilocity_td;
+                currentLocation.y   = normilzec_vec.y*vilocity_td;
 
             //    std::cout << currentLocation.x << std::endl ;
             //    std::cout <<currentLocation.y<< std::endl ;
