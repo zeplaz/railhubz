@@ -66,7 +66,17 @@ bool parser::xml_parser::run_parser()
       compleated = true;
  return compleated;
 }
- std::vector<std::string>* parser::xml_parser::get_hub_data(int index)
+ std::vector<std::string>* parser::xml_parser::get_hub_data(size_t& index)
  {
    return &hub_collection.at(index);
  }
+
+ std::pair<std::string,std::string>* parser::xml_parser::get_track_pair(size_t& index)
+ {
+    return &line_pair_vec.at(index);
+ }
+
+  std::string*  parser::xml_parser::raw_path(size_t& index)
+  {
+    return &raw_path_vec.at(index);
+  }

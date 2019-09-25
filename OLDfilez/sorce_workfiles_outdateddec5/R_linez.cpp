@@ -75,11 +75,10 @@ class vector_math;
                         {
                          AcessArray_channels[0] = true;
                         }
-
                     else
                         {AcessArray_channels[1] =true;}
 
-            time_t msgcurrnt = clock();
+            double msgcurrnt = clock();
 
            telagram  cmd_telamove(msgcurrnt,this->line_id,tela.sender,
                                  -1,move_cmd,0);

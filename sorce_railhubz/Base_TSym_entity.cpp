@@ -18,3 +18,8 @@ void Base_TSym_entity::set_id(int& val)
     be_id = val;
     be_NextValidID = be_id+1;
   }
+
+  void Base_TSym_entity::set_type(Entity_Type&& char_idenity)
+  {
+    entity_type = char_idenity;
+  }

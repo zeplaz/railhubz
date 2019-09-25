@@ -2,10 +2,7 @@
 #pragma once
 
 #include "railhubz.hpp"
-
-#include <vector>
-#include <memory>
-#include <string>
+#include "system_org.hpp"
 
 
 namespace system_org
@@ -64,7 +61,7 @@ namespace system_org
 
       std::shared_ptr<entity_factory> scan_factoryz(std::string f_name);
     protected :
-      virtual Base_TSym_entity* create_entity() override;
+      virtual Base_TSym_entity* create_entity() override{}
     private :
       std::unordered_map<std::string,std::vector<std::shared_ptr
                         <entity_factory>>> factory_map;

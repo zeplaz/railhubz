@@ -13,8 +13,8 @@ class Defined_train_path
     std::stack<path_nodez*> train_path_stk;
 
   public :
-    Defined_train_path() = default;
-    ~Defined_train_path() = default;
+  //  Defined_train_path() = default;
+  //  ~Defined_train_path() = default;
 
     path_nodez* get_next_hub()
     {

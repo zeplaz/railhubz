@@ -1,15 +1,21 @@
 //railhubz.cpp
 #include "railhubz.hpp"
+//#include "system_org.hpp"
 
-railhubz::railhubz(std::string name,sf::Vector2f hub_l)
+railhubz::railhubz(int name,sf::Vector2f hub_l)
 
 {
-  hub_id = parser::str2int_run(name.c_str());
+  hub_id =name;
+  //hub_id= sym_manger.find_lookuptable(name);
+
+  //parser::str2int_run(name.c_str());
 
   hub_location = hub_l;
   cr_hubgraphic.setRadius(20.f);
   cr_hubgraphic.setPosition(hub_location);
   cr_hubgraphic.setFillColor(sf::Color::Green);
+
+  //std::cout<<"##NEWhubID::" <<hub_id <<"  NAME::"<<name.c_str() << "\n \n";
  }
 
 void railhubz::draw(sf::RenderWindow &window)

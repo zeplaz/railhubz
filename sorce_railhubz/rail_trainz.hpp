@@ -45,8 +45,8 @@
       Defined_train_path<railhubz> train_route;
 
     public :
-      ~trainz() = default;
-      trainz() : Base_TSym_entity(train_id){}
+      virtual ~trainz() = default;
+      trainz() : Base_TSym_entity(train_id){set_type(Entity_Type::TRAIN);}
       trainz(trainz&& train_m) noexcept = default;
       trainz& operator = (const trainz&) = default;
       trainz& operator = (trainz&&) = default;
@@ -89,20 +89,16 @@ class R_linez : public Base_TSym_entity
     double Acess_Drection;
 
   public :
-    ~R_linez() = default;
-     R_linez() : Base_TSym_entity(line_id){}
-
-
-    void update(){};
-    bool Handle_telagram(const telagram& tela){};
-    void draw(sf::RenderWindow &window);
-
+    virtual ~R_linez() = default;
+    R_linez() : Base_TSym_entity(line_id){set_type(Entity_Type::R_LINEZ);}
 
     inline int get_ID() {return line_id;}
+    void update(){};
+    bool Handle_telagram(const telagram& tela);
+    void draw(sf::RenderWindow &window);
 
     void set_pos (float hub1_x,float hub1_y, float hub2_x, float hub2_y);
-
-
+    void set_pos (const sf::Vector2f vecloc1,const sf::Vector2f vecloc2);
 
     bool can_train_enter();
 

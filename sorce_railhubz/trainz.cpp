@@ -40,7 +40,6 @@ void trainz::hault()
                                                 tr_positional.next_hub_loc.x,
                                                 tr_positional.currentLocation.y,
                                                 tr_positional.next_hub_loc.y);
-
        }
     }
     tr_positional.is_halt = true;

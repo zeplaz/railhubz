@@ -10,6 +10,7 @@
 //mylibz
 #include "rail_trainz.hpp"
 #include "parser.hpp"
+//#include "system_org.hpp"
 
 class R_linez;
 class trainz;
@@ -24,7 +25,7 @@ class trainz;
       std::vector<R_linez*> line_connections;
       std::priority_queue<trainz*> train_que;
     public :
-      railhubz(std::string name,sf::Vector2f hub_l);
+      railhubz(int name,sf::Vector2f hub_l);
       ~railhubz() = default;
       inline int get_ID() const
       {return hub_id;}

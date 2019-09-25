@@ -45,8 +45,16 @@ class xml_parser
   std::vector<std::pair<std::string,std::string>> line_pair_vec;
 
   bool run_parser();
-  inline size_t number_of_hubz() {return hub_collection.size();}
-  std::vector<std::string>* get_hub_data(int index);
+  inline const size_t number_of_hubz() {return hub_collection.size();}
+  std::vector<std::string>* get_hub_data(size_t& index);
+
+  inline const size_t number_of_tracks(){return line_pair_vec.size();}
+  std::pair<std::string,std::string>* get_track_pair(size_t& index);
+
+  inline const size_t number_of_pathz(){return raw_path_vec.size();}
+
+  std::string* raw_path(size_t& index);
+
 };
 
 }

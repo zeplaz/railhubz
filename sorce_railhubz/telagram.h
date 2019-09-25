@@ -10,9 +10,9 @@ but i could see it being used by other msgs and comuncation services. implments 
 
 #include <math.h>
 #include "msg_cmdz.h"
-
-const double Smallest_Delay =0.20;
-
+#include <chrono>
+// Smallest_Delay =0.20;
+const std::chrono::milliseconds Smallest_Delay{200};
 
   template <class Type>
   Type derefrence_Type(void * ponter)
@@ -29,23 +29,23 @@ extern "C"{
   struct telagram
 
   {
-    double trazmission_t;
+    std::chrono::steady_clock::time_point  trazmission_t;
     int sender;
     int receiver;
     float priority;
-    int msg;
+    msg_cmdz msg;
     void* Other_data;
 
     telagram():
-      trazmission_t(-1),
+      trazmission_t(std::chrono::steady_clock::now()),
       sender(-1),
       receiver(-1),
       priority(-1),
-      msg(-1),
+      msg(msg_cmdz::NULLCMD),
       Other_data(nullptr)
     {}
 
-  telagram ( double time, int sender, int receiver, float priority, int msg,
+  telagram ( std::chrono::steady_clock::time_point time, int sender, int receiver, float priority, msg_cmdz msg,
                void* data):
               trazmission_t(trazmission_t),
               sender(sender),
@@ -57,9 +57,12 @@ extern "C"{
 };
 
 
-  inline bool operator ==( const telagram& tela1, const telagram& tela2)
+ inline bool operator ==( const telagram& tela1, const telagram& tela2)
    {
-    return (fabs(tela1.trazmission_t-tela2.trazmission_t) < Smallest_Delay) &&
+
+    auto dif_time = std::chrono::duration_cast<std::chrono::milliseconds>(tela1.trazmission_t - tela2.trazmission_t);
+
+    return ( dif_time < Smallest_Delay) &&
            (tela1.sender == tela2.sender)       &&
            (tela1.receiver == tela2.receiver)   &&
            (tela1.msg == tela2.msg)             &&
@@ -75,12 +78,12 @@ extern "C"{
        {return false;}
     else
      {
-       if (tela1.priority == -1)
+       if (tela1.priority == tela2.priority)
+        {
+          if(tela1.trazmission_t < tela2.trazmission_t)
           {return false;}
-
-       if (tela2.priority == -1)
-          {return true;}
-
+          else return true;
+        }
        return (tela1.priority<tela2.priority);
       }
 

@@ -8,6 +8,9 @@
 //#include <SFML/Window.hpp>
 #include "telagram.h"
 
+ enum class Entity_Type: char{TRAIN='T',R_LINEZ ='R'};
+
+
 class Base_TSym_entity
 
 {
@@ -16,25 +19,29 @@ class Base_TSym_entity
   int be_id;
   inline static int be_NextValidID = 0;
 
-  //testz the id.
   void set_id(int& val);
 
-public :
+  protected :
+  Entity_Type entity_type;
 
- Base_TSym_entity(int& id_in);
+  public :
+  Base_TSym_entity(int& id_in);
 
+  virtual ~Base_TSym_entity(){};
 
-virtual ~Base_TSym_entity(){};
+  virtual void update() = 0;
 
-virtual void update() = 0;
+  virtual  bool Handle_telagram(const telagram& tela) {return false;}
 
-virtual  bool Handle_telagram(const telagram& tela) {return false;}
+  virtual void draw(sf::RenderWindow &window)= 0;
 
-virtual void draw(sf::RenderWindow &window)= 0;
+  inline int get_ID() const {return be_id;}
+  //inline int
+  inline static int get_next_id() { return be_NextValidID;}
 
-inline int get_ID() const {return be_id;}
-//inline int
-inline static int get_next_id() { return be_NextValidID;}
+  void set_type(Entity_Type&& char_idenity);
+
+  const Entity_Type& get_Etype(){return entity_type;}
 };
 
 #endif
