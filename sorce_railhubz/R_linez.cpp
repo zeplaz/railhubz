@@ -2,19 +2,11 @@
 
 #include "rail_trainz.hpp"
 #include "mathz.hpp"
+#include "msg_dispatcher.hpp"
 
 void R_linez::draw(sf::RenderWindow &window)
  {
   window.draw(rail_linez_array);
- }
-
- bool R_linez::can_train_enter()
- {
-  if (acess_channels[0] == true && acess_channels[1] == true)
-     {return false;}
-
-  if (acess_channels[0] == false && acess_channels[1] == false)
-     {return true;}
  }
 
  void R_linez::set_pos (const sf::Vector2f vecloc1,const sf::Vector2f vecloc2)
@@ -63,11 +55,13 @@ void R_linez::draw(sf::RenderWindow &window)
 
  bool R_linez::Handle_telagram(const telagram& tela)
   {
+    double inbounddrection;
+
     switch (tela.msg)
     {
       case msg_cmdz::enter_line :
       {
-        double inbounddrection;
+
         std::memcpy(&inbounddrection, &tela.Other_data, sizeof inbounddrection);
 
         Acess_Drection =+ (inbounddrection*vertex_slop);
@@ -79,15 +73,63 @@ void R_linez::draw(sf::RenderWindow &window)
 
         std::chrono::steady_clock::time_point traz_time = std::chrono::steady_clock::now();
 
-        telagram  cmd_telamove(traz_time,this->line_id,tela.sender,
-                               -1,msg_cmdz::move_cmd,nullptr);
+        //tranzmitor->tranzmit(traz_time,this->line_id,tela.sender,
+      //                       -1,msg_cmdz::move_cmd,nullptr);
 
-        //this->Handle_telagram(cmd_telamove);
+         return true;
+        break;
+        }
 
-        return true;
+        case msg_cmdz::exit_line :
+        {
+          if(acess_channels[1] == true)
+          {
+            acess_channels[1] = false;
+            std::memcpy(&inbounddrection, &tela.Other_data, sizeof inbounddrection);
+            std::cout <<"##DEBUG:::Inbounddrectionz"<<inbounddrection <<'\n' <<'\n';
+            Acess_Drection =- (inbounddrection*vertex_slop);
+            return true;
+          break;
+          }
+          if(acess_channels[0] == true && acess_channels[0] == false )
+          {
+            acess_channels[0] = false;
+            std::memcpy(&inbounddrection, &tela.Other_data, sizeof inbounddrection);
+            std::cout <<"##DEBUG:::Inbounddrectionz"<<inbounddrection <<'\n' <<'\n';
+            Acess_Drection =- (inbounddrection*vertex_slop);
+            return true;
+          break;
+          }
+        return false;
         break;
         }
 
         default : return false;
       }
-     }
+   }
+
+   bool R_linez::can_train_enter(const sf::Vector2f& currnt_l, const sf::Vector2f& next_l)
+   {
+
+     if(acess_channels[0] == true && acess_channels[1] == true)
+      {
+       return false;
+      }
+
+     if(acess_channels[0] == false && acess_channels[1] == false)
+      {
+       return true;
+      }
+
+     double temp_eclidDis =  mathz::distance_euclidean(currnt_l.x,currnt_l.y, next_l.x,next_l.y);
+
+     if(acess_channels[0] == true && acess_channels[1] == false || acess_channels[0] == false && acess_channels[1] == true)
+      {
+        if(mathz::sign(mathz::Drectional_dxr(temp_eclidDis,currnt_l,next_l))==mathz::sign(Acess_Drection))
+        {
+          return true;
+        }
+        else return false;
+      }
+      return false;
+    }

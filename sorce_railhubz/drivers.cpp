@@ -1,17 +1,22 @@
 
 #include "drivers.hpp"
-
+#include <random>
 /*
 *##driver inliazers!
 *parsed data can thus be used in HERE!!!!!!---> to setup the whole systemz
 
 TODO: allow for options at startup. defult xml, custom, and binary loader-creater
 */
+void driver::drive_loop()
+{
+  sym_manger.update_rail_entityz();
+
+}
+
   void driver::initializer()
   {
-
     std::string rail_type1 = "rail01";
-      std::string train_type1 = "train01";
+    std::string train_type1 = "train01";
     parser::xml_parser inilz_parser;
 
     system_org::hub_factory inlized_hub_factory;
@@ -74,10 +79,31 @@ TODO: allow for options at startup. defult xml, custom, and binary loader-create
 
     //Path setup
     std::cout <<"->DEBUG+size of pathsnum" << pathz_tomale <<'\n';
+    std::vector<std::vector<std::string>> pathz_vec;
     for(size_t i = 0; i<pathz_tomale;i++)
-    {
+     {
         std::cout <<"\n #->NEWpathconsturcion BEGING\n";
-        sym_manger.construct_pathz(inilz_parser.raw_path(i));
-    }
+        std::string& temp_string = inilz_parser.raw_path(i);
+        pathz_vec.push_back(sym_manger.construct_pathz(temp_string));
+     }
+
+     for(size_t i =0; i<pathz_vec.size();i++)
+     {
+       sym_manger.registar_pathz(pathz_vec.at(i));
+     }
+
+
+     //set trains to random paths...
+
+     std::default_random_engine generator;
+     std::uniform_int_distribution<int> distribution(0,sym_manger.num_of_paths());
+     int path_roll = distribution(generator);
+     auto rad_path_str = std::bind (distribution, generator);
+
+
+     sym_manger.activate_factory(train_type1);
+
+
+
   }
   //R_linez* templine = dynamic_cast<R_linez*>(sym_manger.get_rail_entity(sym_manger.r_line_id_list[0]));

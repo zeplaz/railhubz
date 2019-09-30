@@ -29,6 +29,9 @@ int main(int argc, char** argv)
         glViewport(0, 0, prim_evt.size.width, prim_evt.size.height);
       }//endpolling
 
+
+      driver::drive_loop();
+
       //rendring
       p_window.clear();
       //move to a thread!

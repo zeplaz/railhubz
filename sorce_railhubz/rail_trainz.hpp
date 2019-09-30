@@ -17,7 +17,6 @@
   class railhubz;
 
 
-
   class trainz :  public Base_TSym_entity
   {
     protected :
@@ -29,7 +28,7 @@
       int active_line;
       sf::Vector2f currentLocation;
       sf::Vector2f next_hub_loc;
-
+      double drex_dxr;
       double diz_next_hub;
       double diz_traveled;
 
@@ -44,6 +43,10 @@
       trainz::trnz_positional tr_positional;
       Defined_train_path<railhubz> train_route;
 
+      railhubz* orign_station;
+      railhubz* destination_station;
+      railhubz* next_station;
+
     public :
       virtual ~trainz() = default;
       trainz() : Base_TSym_entity(train_id){set_type(Entity_Type::TRAIN);}
@@ -54,11 +57,13 @@
       void update();
       bool Handle_telagram(const telagram& tela){};
       void draw(sf::RenderWindow &window);
-
+      void set_path();
+      
       void hault();
       void move(int enter_line_id);
-      //bool arrive_final();
       bool in_station();
+      bool has_arrived_final();
+      void Path_Next_hub();
 
       inline  int curr_station()
       {
@@ -100,7 +105,7 @@ class R_linez : public Base_TSym_entity
     void set_pos (float hub1_x,float hub1_y, float hub2_x, float hub2_y);
     void set_pos (const sf::Vector2f vecloc1,const sf::Vector2f vecloc2);
 
-    bool can_train_enter();
+    bool can_train_enter(const sf::Vector2f& currnt_l,const  sf::Vector2f& next_l);
 
     inline double line__drection_status() {return Acess_Drection;}
     inline auto get_channel_stat_prt()-> bool(&)[2] {return acess_channels;}

@@ -76,7 +76,7 @@ bool parser::xml_parser::run_parser()
     return &line_pair_vec.at(index);
  }
 
-  std::string*  parser::xml_parser::raw_path(size_t& index)
+  std::string&  parser::xml_parser::raw_path(size_t& index)
   {
-    return &raw_path_vec.at(index);
+    return raw_path_vec.at(index);
   }
