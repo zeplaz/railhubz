@@ -53,7 +53,7 @@ class xml_parser
 
   inline const size_t number_of_pathz(){return raw_path_vec.size();}
 
-  std::string* raw_path(size_t& index);
+  std::string& raw_path(size_t& index);
 
 };
 

@@ -11,7 +11,7 @@
 
 /*
 * system_org  holds defintions for Sym_map, the factoires.
-* 
+*
 */
 
 
@@ -94,14 +94,14 @@
          }
      }
 
-    std::vector<std::string> system_org::Sym_Map::construct_pathz(std::string* raw_path)
+    std::vector<std::string> system_org::Sym_Map::construct_pathz(std::string& raw_path)
     {
       std::deque<char> path_processing_que;
       std::string temp_hub_name;
       std::vector<std::string> path_station_list;
-      std::cout << *raw_path <<" :name size is::" << raw_path->size() <<'\n';
+      std::cout << raw_path <<" :name size is::" << raw_path.size() <<'\n';
 
-      for ( std::string::iterator it=raw_path->begin(); it!=raw_path->end(); ++it)
+      for ( std::string::iterator it=raw_path.begin(); it!=raw_path.end(); ++it)
       {
         if(*it == '>')
         {
@@ -182,6 +182,28 @@
 
       }
 
+      void system_org::Sym_Map::registar_pathz(std::vector<std::string>& str_pathz)
+      {
+        Defined_train_path<railhubz> new_path;
+
+        for(std::vector<std::string>::iterator it = str_pathz.begin(); it != str_pathz.end(); ++it)
+        {
+          new_path.addhubtoPath(get_hub(find_lookuptable(*it)));
+        }
+        train_path_vec.push_back(new_path);
+        //std::cout <<"new path registared size is::" << train_path_vec.size() <<'\n';
+      }
+
+      void system_org::Sym_Map::update_rail_entityz()
+      {
+        for ( auto it = rail_entity_map.begin(); it != rail_entity_map.end(); ++it )
+        {
+          it->second->update();
+        }
+      }
+
+
+
     /*
     *Stm_Map FACTORY COTL FUNCTIONZ
     */
@@ -205,6 +227,7 @@
       temp_fac->request_entity();
       temp_fac->bussy = false;
     }
+
 
 
     /*

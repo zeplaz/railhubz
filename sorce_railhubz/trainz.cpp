@@ -3,6 +3,7 @@
 //myheaderz
 #include "rail_trainz.hpp"
 #include "mathz.hpp"
+#include "msg_dispatcher.hpp"
 
 //sfml
 //#include <SFML/System.hpp>
@@ -14,14 +15,34 @@ void trainz::draw(sf::RenderWindow &window)
   }
 
 bool trainz::in_station()
-{
+ {
   if (tr_positional.arrived_final == false && tr_positional.is_halt == true)
   {return true;}
 
   return false;
-}
+ }
 
-void trainz::hault()
+ bool trainz::has_arrived_final()
+ {
+   if(tr_positional.arrived_final == true)
+   {
+     std::cout << "->Train:" << train_id<<" has arived at:"<<destination_station->get_ID() << '\n';
+     return true;
+   }
+   return false;
+ }
+
+ void trainz::Path_Next_hub()
+ {
+   next_station = train_route.get_next_hub();
+   tr_positional.next_hub_loc = next_station->get_location();
+   tr_positional.diz_next_hub = mathz::distance_euclidean(tr_positional.currentLocation.x,
+                                           tr_positional.next_hub_loc.x,
+                                           tr_positional.currentLocation.y,
+                                           tr_positional.next_hub_loc.y);
+ }
+
+ void trainz::hault()
   {
     if (tr_positional.arrived_final == false)
     {
@@ -32,14 +53,19 @@ void trainz::hault()
       }
       else
       {
+        this->Path_Next_hub();
+
+         tr_positional.drex_dxr = mathz::Drectional_dxr(tr_positional.diz_next_hub,
+                                                tr_positional.currentLocation,
+                                                tr_positional.next_hub_loc);
+
+        std::chrono::steady_clock::time_point traz_time = std::chrono::steady_clock::now();
+
+        std::cout <<"##DEBUG:: drex_DRX:" << tr_positional.drex_dxr <<'\n';
+        tranzmitor->tranzmit(traz_time,this->get_ID(),tr_positional.active_line,-1.f,
+                             msg_cmdz::exit_line,&tr_positional.drex_dxr);
+
         tr_positional.active_line = -1;
-         //  next_station->;
-        //next_station = train_route.get_next_hub();
-        //tr_positional.next_hub_loc = next_station->get_location();
-        tr_positional.diz_next_hub = mathz::distance_euclidean(tr_positional.currentLocation.x,
-                                                tr_positional.next_hub_loc.x,
-                                                tr_positional.currentLocation.y,
-                                                tr_positional.next_hub_loc.y);
        }
     }
     tr_positional.is_halt = true;
@@ -47,16 +73,18 @@ void trainz::hault()
 
   void trainz::update()
   {
-    steady_clock::time_point current_t_point = steady_clock::now();
-    duration<double> movmentDuration = current_t_point-tr_positional.entry_time;
-
-    if(tr_positional.is_halt == true)
+    if(tr_positional.arrived_final == false)
     {
+     steady_clock::time_point current_t_point = steady_clock::now();
+     duration<double> movmentDuration = current_t_point-tr_positional.entry_time;
+
+     if(tr_positional.is_halt == true && tr_positional.arrived_final == false)
+     {
       cr_traingraphic.setFillColor(sf::Color::Blue);
-    }
+     }
 
-    if (tr_positional.is_halt == false)
-    {
+     if (tr_positional.is_halt == false)
+     {
       if(tr_positional.diz_traveled > tr_positional.diz_next_hub)
       {
         printf("train has traveld correct distance \n");
@@ -84,8 +112,9 @@ void trainz::hault()
 
         tr_positional.diz_traveled =abs(tr_positional.diz_next_hub-dist_sqrz);
         cr_traingraphic.setPosition(tr_positional.currentLocation);
+       }
       }
-      }
+     }
     }
 
   void trainz::move(int enty_line_id)
@@ -95,4 +124,17 @@ void trainz::hault()
     tr_positional.entry_time = steady_clock::now();
     tr_positional.active_line = enty_line_id;
     cr_traingraphic.setFillColor(sf::Color::Magenta);
+
+    tr_positional.drex_dxr = mathz::Drectional_dxr(tr_positional.diz_next_hub,
+                                           tr_positional.currentLocation,
+                                           tr_positional.next_hub_loc);
+
+    tranzmitor->tranzmit(tr_positional.entry_time,this->get_ID(),enty_line_id,
+                         -1.f,msg_cmdz::enter_line,&tr_positional.drex_dxr);
+
+   }
+
+   void trainz::set_path()
+   {
+     
    }

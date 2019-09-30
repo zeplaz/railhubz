@@ -30,13 +30,15 @@ namespace system_org
       std::unordered_map<int, Base_TSym_entity*> rail_entity_map;
       std::unordered_map<size_t,railhubz*> hubz_map;
       std::unordered_map<std::string,int> lookuptable;
+      std::vector<Defined_train_path<railhubz>> train_path_vec;
 
       factory_ctlr mfactory_ctrlr;
 
     public :
-    std::vector<int> r_line_id_list;
-    std::vector<int> train_id_list;
-    std::vector<size_t> hub_id_list;
+      std::vector<int> r_line_id_list;
+      std::vector<int> train_id_list;
+      std::vector<size_t> hub_id_list;
+
 
       static Sym_Map& instance();
 
@@ -55,13 +57,19 @@ namespace system_org
       std::unique_ptr<std::vector<R_linez*>> retrieve_R_linez();
 
       //path procedurez
-      std::vector<std::string> construct_pathz(std::string* raw_path);
-      //void registar_pathz();
+      std::vector<std::string> construct_pathz(std::string& raw_path);
+      void registar_pathz(std::vector<std::string>& str_pathz);
+      inline int num_of_paths()
+      {
+        return train_path_vec.size();
+      }
 
       //sytem proz
       void render_entiez(sf::RenderWindow &window);
       void render_hubz(sf::RenderWindow &window);
       int find_lookuptable(std::string input);
+      void update_rail_entityz();
+
       //factory crlz
       void insert_facgroup_ctrl(std::string f_name,
                                std::vector<std::shared_ptr
