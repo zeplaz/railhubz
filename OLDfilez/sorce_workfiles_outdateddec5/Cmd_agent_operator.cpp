@@ -26,7 +26,7 @@ static enum hubNamez {Shebrooke,Toronto,Montreal,QubecCity,Ottowa};
     }
 
     void Cmd_agent_operator::scan_hubs_for_dispatch()
-        {
+    {
       std::vector<int>* current_dispatch_hublist = Sym_Map->hublist();
       sf::Vector2f* train_Next_hub_vec;
       sf::Vector2f*  train_currnt_loc_vec;
@@ -45,7 +45,7 @@ static enum hubNamez {Shebrooke,Toronto,Montreal,QubecCity,Ottowa};
             temp_hub_id = current_dispatch_hublist->at(i);
             temp_hub = get_hub_via_id(temp_hub_id);
 
-            temp_train_id =temp_hub->return_highest_prioty_train_id());
+            temp_train_id = temp_hub->return_highest_prioty_train_id());
             prt_train = get_entity_via_id(temp_train_id);
 
             tempLine_vector = temp_hub->return_ptr_lineconections();

@@ -39,15 +39,18 @@
       int train_id;
       sf::CircleShape cr_traingraphic;
       float tr_priority = 1.f;
-      int t_speed=1;
+      float esclatcatator_priority;
+      float t_speed=15;
       trainz::trnz_positional tr_positional;
       Defined_train_path<railhubz> train_route;
 
-      railhubz* orign_station;
-      railhubz* destination_station;
-      railhubz* next_station;
+
 
     public :
+    railhubz* orign_station = nullptr;
+    railhubz* destination_station = nullptr;
+    railhubz* next_station = nullptr;
+
       virtual ~trainz() = default;
       trainz() : Base_TSym_entity(train_id){set_type(Entity_Type::TRAIN);}
       trainz(trainz&& train_m) noexcept = default;
@@ -55,15 +58,39 @@
       trainz& operator = (trainz&&) = default;
 
       void update();
+      void Init()
+      {
+        cr_traingraphic.setPosition(tr_positional.currentLocation);
+        cr_traingraphic.setRadius(5.f);
+        cr_traingraphic.setFillColor(sf::Color::Magenta);
+      }
       bool Handle_telagram(const telagram& tela){};
       void draw(sf::RenderWindow &window);
-      void set_path();
-      
+      void set_path(const Defined_train_path<railhubz>& inpath);
       void hault();
       void move(int enter_line_id);
       bool in_station();
       bool has_arrived_final();
       void Path_Next_hub();
+      inline float get_priority()
+        {
+          return tr_priority;
+        }
+
+        inline float get_Esk_priority()
+        {
+            return esclatcatator_priority;
+        }
+
+        inline void update_Esk_priority(float in)
+        {
+          esclatcatator_priority += in*tr_priority;
+        }
+
+        inline void re_set_Esk_priority()
+        {
+          esclatcatator_priority =tr_priority;
+        }
 
       inline  int curr_station()
       {
@@ -89,7 +116,7 @@ class R_linez : public Base_TSym_entity
   protected :
     int line_id;
     sf::VertexArray rail_linez_array;
-    bool acess_channels[2];// = {false,false};
+    bool acess_channels[2] = {false,false};
     double vertex_slop;
     double Acess_Drection;
 

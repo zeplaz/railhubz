@@ -345,7 +345,16 @@ namespace mathz
 
 
  }
+/*
 
+Stopping distance (SD) = mass * (currentspeed^2) / (2 * maximum braking force) and the rearrangements:
+
+Necessary braking force (BF) = mass * (currentspeed^2) / (2 * remaining distance to target)
+
+Maximum stoppable velocity (Vmax) = sqrt( 2 * maximum braking force * remaining distance to target / mass)
+
+turn over point = ( (Distance to target * braking force) - ((initial velocity^2)* mass/2) ) /(accelerating force + braking force) 
+8/
  /*  template<typename Type, template<typename> class varclass>
    class calz
    {

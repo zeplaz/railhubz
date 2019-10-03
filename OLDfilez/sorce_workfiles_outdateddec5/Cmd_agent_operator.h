@@ -37,8 +37,7 @@ class Sym_Map;
 class Cmd_agent_operator
  {
 
-private:
-
+ private:
 
     time_t cmd_time_start;
     std::vector<int> train_list;
@@ -57,11 +56,11 @@ private:
     std::priority_queue<train_linepar> trainpriorty_master_que;
 
 
-public :
+  public :
 
     int enity_count =0;
     int train_count=0;
-  int hubz_count =0;
+    int hubz_count =0;
 
     int number_of_dispatches=0;
     int numberofarrvails=0;

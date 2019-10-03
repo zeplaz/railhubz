@@ -9,8 +9,9 @@ TODO: allow for options at startup. defult xml, custom, and binary loader-create
 */
 void driver::drive_loop()
 {
+  m_cmd_agent_op.scan_hubs_for_dispatch_cadiates();
   sym_manger.update_rail_entityz();
-
+  m_cmd_agent_op.dispatchtrain();
 }
 
   void driver::initializer()
@@ -93,15 +94,39 @@ void driver::drive_loop()
      }
 
 
-     //set trains to random paths...
-
+     //TRAIN SETUPZ/
+     const size_t trainz_tomake = 5;
+     //radom path sets
      std::default_random_engine generator;
-     std::uniform_int_distribution<int> distribution(0,sym_manger.num_of_paths());
+     std::uniform_int_distribution<int> distribution(0,sym_manger.num_of_paths()-1);
      int path_roll = distribution(generator);
      auto rad_path_str = std::bind (distribution, generator);
 
 
-     sym_manger.activate_factory(train_type1);
+     for(size_t i =0; i< trainz_tomake;i++)
+     {
+       sym_manger.activate_factory(train_type1);
+     }
+
+
+     for(size_t i =0; i< sym_manger.train_id_list.size();i++)
+     {
+       std::cout<<"BEGIN SETTRAIN::" << i <<'\n';
+       trainz* temp_train = dynamic_cast<trainz*>(sym_manger.get_rail_entity(
+                                                 sym_manger.train_id_list.at(i)));
+        //  int temp_rad = ;
+        std::cout<<"cast compleatefor::"<< sym_manger.train_id_list.at(i) <<'\n';
+        int temp_rad = rad_path_str();
+        std::cout<<"rad compleate::" <<temp_rad  <<'\n';
+        const Defined_train_path<railhubz>& ref_t_path = sym_manger.rtn_train_path(temp_rad);
+        temp_train->set_path(ref_t_path);
+        temp_train->Path_Next_hub();
+        temp_train->Init();
+        Defined_train_path<railhubz>& cnstles_path  = const_cast<Defined_train_path<railhubz>&> (ref_t_path);
+        railhubz* temp_hub = cnstles_path.peak_top();
+
+        temp_hub->add_train_toque(temp_train);
+     }
 
 
 

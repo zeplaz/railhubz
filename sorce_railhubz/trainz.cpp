@@ -34,7 +34,13 @@ bool trainz::in_station()
 
  void trainz::Path_Next_hub()
  {
-   next_station = train_route.get_next_hub();
+   if(orign_station == nullptr)
+   {
+     orign_station = train_route.process_next_node();
+     tr_positional.currentLocation = orign_station->get_location();
+   }
+
+   next_station = train_route.process_next_node();
    tr_positional.next_hub_loc = next_station->get_location();
    tr_positional.diz_next_hub = mathz::distance_euclidean(tr_positional.currentLocation.x,
                                            tr_positional.next_hub_loc.x,
@@ -81,6 +87,7 @@ bool trainz::in_station()
      if(tr_positional.is_halt == true && tr_positional.arrived_final == false)
      {
       cr_traingraphic.setFillColor(sf::Color::Blue);
+      this->update_Esk_priority(movmentDuration.count());
      }
 
      if (tr_positional.is_halt == false)
@@ -94,13 +101,25 @@ bool trainz::in_station()
       else
       {
         sf::Vector2f old_vec;
-        float t_velocity = (movmentDuration.count()*t_speed);
+        float t_velocity = ((1+movmentDuration.count())*t_speed);
         old_vec = tr_positional.currentLocation;
+
+
+
+
+
         sf::Vector2f normilzec_vec = mathz::normalize_and_Drectional_vector(tr_positional.diz_next_hub,
                                                                old_vec,tr_positional.next_hub_loc.x,
                                                                tr_positional.next_hub_loc.y);
+
+
         tr_positional.currentLocation.x = normilzec_vec.x*t_velocity;
         tr_positional.currentLocation.y = normilzec_vec.y*t_velocity;
+
+        std::cout << "DISTANCE NXT HUB::" << tr_positional.diz_next_hub <<
+              "  oldx::"  <<  old_vec.x << " oldy:" << old_vec.y << '\n'<<" nexthubx::" << tr_positional.next_hub_loc.x
+              <<  " nexthuby::" << tr_positional.next_hub_loc.y <<'\n'
+              << " normazedvec x::"<<  normilzec_vec.x << " normaly:"<< normilzec_vec.y << '\n'<< '\n';
 
         double dist_sqrz = mathz::dot_abs_sqrd(tr_positional.currentLocation.x,
                                                tr_positional.currentLocation.y,
@@ -110,7 +129,15 @@ bool trainz::in_station()
                                                    tr_positional.currentLocation.y,
                                                    old_vec.x,old_vec.y);
 
-        tr_positional.diz_traveled =abs(tr_positional.diz_next_hub-dist_sqrz);
+        double somestragevallue = abs(tr_positional.diz_next_hub-diz_euldz);
+        tr_positional.diz_traveled +=diz_euldz;
+        std:: cout << " DISTANCE TRAVEL euldz::" << diz_euldz <<'\n'
+                   << " DISANCE squrd::" << dist_sqrz <<'\n'
+                   <<  " distraveled?::eldc" << tr_positional.diz_traveled
+                   <<  " somestragevallue::" << somestragevallue
+                    <<'\n' <<'\n';
+
+        ;
         cr_traingraphic.setPosition(tr_positional.currentLocation);
        }
       }
@@ -124,7 +151,7 @@ bool trainz::in_station()
     tr_positional.entry_time = steady_clock::now();
     tr_positional.active_line = enty_line_id;
     cr_traingraphic.setFillColor(sf::Color::Magenta);
-
+    this->re_set_Esk_priority();
     tr_positional.drex_dxr = mathz::Drectional_dxr(tr_positional.diz_next_hub,
                                            tr_positional.currentLocation,
                                            tr_positional.next_hub_loc);
@@ -134,7 +161,7 @@ bool trainz::in_station()
 
    }
 
-   void trainz::set_path()
+   void trainz::set_path(const Defined_train_path<railhubz>& inpath)
    {
-     
+     train_route = inpath;
    }

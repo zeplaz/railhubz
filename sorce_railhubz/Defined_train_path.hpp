@@ -15,8 +15,16 @@ class Defined_train_path
   public :
   //  Defined_train_path() = default;
   //  ~Defined_train_path() = default;
-
-    path_nodez* get_next_hub()
+     path_nodez* peak_top()
+    {
+      if (!train_path_stk.empty())
+      {  path_nodez* temp_hub_prt = train_path_stk.top();
+        return temp_hub_prt;
+      }
+      else
+      {printf("stack is empty\n"); return nullptr;}
+    }
+    path_nodez* process_next_node()
     {
      if (!train_path_stk.empty())
      {

@@ -113,11 +113,13 @@ void R_linez::draw(sf::RenderWindow &window)
 
      if(acess_channels[0] == true && acess_channels[1] == true)
       {
+        std::cout <<"LINE IS FULL" <<'\n';
        return false;
       }
 
      if(acess_channels[0] == false && acess_channels[1] == false)
       {
+        std::cout <<"LINE IS empty woo!" <<'\n';
        return true;
       }
 
@@ -127,9 +129,14 @@ void R_linez::draw(sf::RenderWindow &window)
       {
         if(mathz::sign(mathz::Drectional_dxr(temp_eclidDis,currnt_l,next_l))==mathz::sign(Acess_Drection))
         {
+          std::cout <<"LINE allows as same drection!" <<'\n';
           return true;
         }
-        else return false;
+        else
+        { std::cout <<"LINE denyz as opposite drection!" <<'\n';
+          return false;
+        }
       }
+      std::cout <<"something went wrong and your defulting no..."<<'\n';
       return false;
     }

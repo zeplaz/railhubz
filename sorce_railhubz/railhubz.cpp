@@ -47,6 +47,8 @@ void railhubz::exit_train()
  }
 
 trainz* railhubz::rtn_priority_train()
- {
-  return train_que.top();
+ {  if(!train_que.empty())
+   {return train_que.top();}
+   std::cout<<"trainHUB is empty \n";
+   return nullptr;
  }
