@@ -9,6 +9,8 @@
 #include "system_org.hpp"
 #include "factoryz.hpp"
 
+#include <stdio.h>
+
 /*
 * system_org  holds defintions for Sym_map, the factoires.
 *
@@ -45,6 +47,8 @@
 
   system_org::Sym_Map::~Sym_Map()
    {
+
+    //print("\nin map destructor\n");
     rail_entity_map.clear();
     hubz_map.clear();
    }
@@ -64,15 +68,18 @@
 
    void system_org::Sym_Map::Register_rail_entity(Base_TSym_entity* newentity)
     {
-     std::cout << "New_renderable entity ID::" << newentity->get_ID() <<'\n';
+     std::cout << "\nNew_renderable entity ID::" << newentity->get_ID() <<'\n';
      rail_entity_map.insert(std::pair<int,Base_TSym_entity*>(newentity->get_ID(),
                                                                       newentity));
     }
 
     Base_TSym_entity* system_org::Sym_Map::get_rail_entity(int id) const
      {
+      std::cout << "***\n--->####in get railentiry, id:" << id <<'\n';
+
       std::unordered_map<int,Base_TSym_entity*>::const_iterator cons_itor =
                                                            rail_entity_map.find(id);
+      
       assert ((cons_itor != rail_entity_map.end()) && "<Sym_Map::get_hub_via_id>:ERROR");
       return cons_itor->second;
      }

@@ -3,6 +3,12 @@
 
 
 
+  bool  train_tuple_comparor(train_tuple lhs, train_tuple rhs)
+  {
+    return std::get<2>(lhs) < std::get<2>(rhs);
+  };
+
+
 void Cmd_agent_operator::dispatchtrain()
 {
   for (size_t i = 0; i< trainLine_que.size(); i++)

@@ -38,6 +38,9 @@ bool trainz::in_station()
    {
      orign_station = train_route.process_next_node();
      tr_positional.currentLocation = orign_station->get_location();
+     this->set_pos_overide(orign_station->get_location());
+     std::cout << "xyset::" <<tr_positional.currentLocation.x <<"sety:"
+              << tr_positional.currentLocation.y <<'\n';
    }
 
    next_station = train_route.process_next_node();
@@ -100,34 +103,35 @@ bool trainz::in_station()
       }
       else
       {
-        sf::Vector2f old_vec;
+        mathz::vector2d<float> oldvec;
+        //sf::Vector2f old_vec;
         float t_velocity = ((1+movmentDuration.count())*t_speed);
-        old_vec = tr_positional.currentLocation;
+        //old_vec = tr_positional.currentLocation;
+        oldvec.x = tr_positional.currentLocation.x;
+        oldvec.y = tr_positional.currentLocation.y;
+
+        oldvec.normailize();
 
 
-
-
-
-        sf::Vector2f normilzec_vec = mathz::normalize_and_Drectional_vector(tr_positional.diz_next_hub,
-                                                               old_vec,tr_positional.next_hub_loc.x,
+        mathz::vector2d<float> normilzec_vec = mathz::normalize_and_Drectional_vector(tr_positional.diz_next_hub,
+                                                               oldvec,tr_positional.next_hub_loc.x,
                                                                tr_positional.next_hub_loc.y);
 
-
-        tr_positional.currentLocation.x = normilzec_vec.x*t_velocity;
-        tr_positional.currentLocation.y = normilzec_vec.y*t_velocity;
+        tr_positional.currentLocation.x += tr_positional.currentLocation.x*oldvec.x*t_velocity;
+        tr_positional.currentLocation.y += tr_positional.currentLocation.x*oldvec.y*t_velocity;
 
         std::cout << "DISTANCE NXT HUB::" << tr_positional.diz_next_hub <<
-              "  oldx::"  <<  old_vec.x << " oldy:" << old_vec.y << '\n'<<" nexthubx::" << tr_positional.next_hub_loc.x
+              "  oldx::"  <<  oldvec.x << " oldy:" << oldvec.y << '\n'<<" nexthubx::" << tr_positional.next_hub_loc.x
               <<  " nexthuby::" << tr_positional.next_hub_loc.y <<'\n'
               << " normazedvec x::"<<  normilzec_vec.x << " normaly:"<< normilzec_vec.y << '\n'<< '\n';
 
         double dist_sqrz = mathz::dot_abs_sqrd(tr_positional.currentLocation.x,
                                                tr_positional.currentLocation.y,
-                                               old_vec.x,old_vec.y);
+                                               oldvec.x,oldvec.y);
 
         double diz_euldz = mathz::distance_euclidean(tr_positional.currentLocation.x,
                                                    tr_positional.currentLocation.y,
-                                                   old_vec.x,old_vec.y);
+                                                   oldvec.x,oldvec.y);
 
         double somestragevallue = abs(tr_positional.diz_next_hub-diz_euldz);
         tr_positional.diz_traveled +=diz_euldz;

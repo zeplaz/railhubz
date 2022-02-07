@@ -1,4 +1,4 @@
-
+#pragma once
 //mathz.hpp
 #include <cmath>
 
@@ -353,7 +353,7 @@ Necessary braking force (BF) = mass * (currentspeed^2) / (2 * remaining distance
 
 Maximum stoppable velocity (Vmax) = sqrt( 2 * maximum braking force * remaining distance to target / mass)
 
-turn over point = ( (Distance to target * braking force) - ((initial velocity^2)* mass/2) ) /(accelerating force + braking force) 
+turn over point = ( (Distance to target * braking force) - ((initial velocity^2)* mass/2) ) /(accelerating force + braking force)
 8/
  /*  template<typename Type, template<typename> class varclass>
    class calz

@@ -20,21 +20,26 @@
   }
   */
   typedef std::tuple<trainz*,R_linez*,float> train_tuple;
-  auto tup_cmp =[](train_tuple lhs, train_tuple rhs)
+
+
+  bool  train_tuple_comparor(train_tuple lhs, train_tuple rhs);
+
+ 
+ /* auto tup_cmp =[](train_tuple lhs, train_tuple rhs)
   {
     return std::get<2>(lhs) < std::get<2>(rhs);
-  };
+  };*/
 
 
  class Cmd_agent_operator
   {
     friend class Sym_Map;
     
-    using P_que_trainz = std::priority_queue<train_tuple,std::vector<train_tuple>,decltype(tup_cmp)>;
+    using P_que_trainz = std::priority_queue<train_tuple,std::vector<train_tuple>,decltype(&train_tuple_comparor)>;
 
     private:
 
-      P_que_trainz trainLine_que{tup_cmp};
+      P_que_trainz trainLine_que{train_tuple_comparor};
     public :
 
       int enity_count = 0;

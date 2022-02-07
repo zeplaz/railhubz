@@ -58,9 +58,17 @@
       trainz& operator = (trainz&&) = default;
 
       void update();
+      
+      template<class Type>
+      void set_pos_overide(Type invec)
+      {
+        tr_positional.currentLocation.x = invec.x;
+        tr_positional.currentLocation.y  = invec.y;
+        cr_traingraphic.setPosition(tr_positional.currentLocation);
+      }
+
       void Init()
       {
-        cr_traingraphic.setPosition(tr_positional.currentLocation);
         cr_traingraphic.setRadius(5.f);
         cr_traingraphic.setFillColor(sf::Color::Magenta);
       }

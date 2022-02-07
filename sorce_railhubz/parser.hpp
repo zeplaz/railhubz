@@ -20,7 +20,7 @@ namespace parser
   }
 
   const int h_int_name =  str2int("name");
-  const int train_int_path =  str2int("trainz_path");
+  const unsigned int train_int_path =  str2int("trainz_path");
   const int h_mtl =  str2int("mtl");
   const int h_shrbyz =  str2int("shrbyz");
   const int h_qcity =  str2int("qcity");
