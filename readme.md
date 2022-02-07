@@ -1,7 +1,7 @@
 
 # railhubz
 #### Base was build for a Oprating Systems Course However as of 2019 total REFACTOR! in devevloment for personal growth.
-### Uses Message dispatcher, facotry patterns, a simple xml Parser to dynamicly load data, a enitity framwork, to communcating Signalling to an operator gain information from an indpendent hubsystem 
+### Uses Message dispatcher, facotry patterns, a simple xml Parser to dynamicly load data, a enitity framwork, to communcating Signalling to an operator gain information from an indpendent hubsystem
 
 #### program uses, sfml lib for graphics. not included!
 
@@ -13,9 +13,11 @@
 Contains updated sorcecode
 complies current with parser and baisc hub raillinez no functionaly byound.
 
-test compilez using {you may remove unessary flags, -pg is used to profile, and wall etc to just give more info}
 
-g++ -std=c++17  -Wall -Wextra -pedantic -pg   main_test_01.cpp  trainz.cpp R_linez.cpp Base_TSym_entity.cpp railhubz.cpp system_org.cpp  parser.cpp  drivers.cpp msg_dispatcher.cpp `sdl2-config --cflags --libs` -lSDL2_image -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system -lGLU -lGL -lm -lglut
+#- MAKEFILE
+
+ BUILDS DEBUG BUILD WITH -pg
+ TODO:get those object files living elsewhere. 
 
 ### -[etcz]-
 extra code and file bits on deisgn, and other conceptes and notes.
@@ -28,7 +30,7 @@ includez:
 
 #### base_class_and_functions_railHuhbz_v0.2
 #### cmd_agent_sorce 	
-#### odlervs 
+#### odlervs
 #### sorce_workfiles_outdateddec5
 #### test
 
@@ -45,5 +47,5 @@ the Cmd_agent_oprator deals with trainsz.
 
 
 
-
-
+ pure COMPILE::
+g++ -std=c++17  -Wall -Wextra -pedantic -pg   main_test_01.cpp  trainz.cpp R_linez.cpp Base_TSym_entity.cpp railhubz.cpp system_org.cpp  parser.cpp  drivers.cpp msg_dispatcher.cpp Cmd_agent_v3Operaor.cpp 'sdl2-config --cflags --libs' -lSDL2_image -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system -lGLU -lGL -lm -lglut
