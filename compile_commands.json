@@ -1,0 +1,172 @@
+[
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/main_test_01.cpp",
+   "obj/main_test_01.d"
+  ],
+  "file": "source/main_test_01.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/msg_dispatcher.cpp",
+   "obj/libs/msg_dispatcher.d"
+  ],
+  "file": "source/libs/msg_dispatcher.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/Base_TSym_entity.cpp",
+   "obj/libs/Base_TSym_entity.d"
+  ],
+  "file": "source/libs/Base_TSym_entity.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/system_org.cpp",
+   "obj/libs/system_org.d"
+  ],
+  "file": "source/libs/system_org.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/Cmd_agent_v3Operaor.cpp",
+   "obj/libs/Cmd_agent_v3Operaor.d"
+  ],
+  "file": "source/libs/Cmd_agent_v3Operaor.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/parser.cpp",
+   "obj/libs/parser.d"
+  ],
+  "file": "source/libs/parser.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/railhubz.cpp",
+   "obj/libs/railhubz.d"
+  ],
+  "file": "source/libs/railhubz.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/drivers.cpp",
+   "obj/libs/drivers.d"
+  ],
+  "file": "source/libs/drivers.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/trainz.cpp",
+   "obj/libs/trainz.d"
+  ],
+  "file": "source/libs/trainz.cpp"
+ },
+ {
+  "directory": "/home/ogb_zo/Dev_envo_workspace/gitrepoz/railhubz/railhubz",
+  "arguments": [
+   "clang++",
+   "-std=c++17",
+   "-Wall",
+   "-Wextra",
+   "-Wpedantic",
+   "-pg",
+   "-g",
+   "-I3rd_party",
+   "-MM",
+   "source/libs/R_linez.cpp",
+   "obj/libs/R_linez.d"
+  ],
+  "file": "source/libs/R_linez.cpp"
+ }
+]
