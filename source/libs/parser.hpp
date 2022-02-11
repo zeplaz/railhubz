@@ -1,13 +1,29 @@
 //xml_parser.hpp
 #pragma once
 
-#include <iostream>
-#include <regex>
-#include <fstream>
+
 #include <string>
+#include <vector>
+#include <utility>
+
+#include <fstream>
+#include <regex>
 
 namespace parser
 {
+  typedef std::vector<std::string>  String_Vec;
+  typedef std::string Key;
+  typedef std::pair<std::string,std::string> String_Pair;
+
+  enum class xml_node_type
+  {
+  null_node,
+  root_node,
+  element_node,
+  plan_text_node,
+  comment_node,
+  declaration_node,
+  };
 
   constexpr unsigned int str2int(const char* str, int h = 0)
   {
@@ -27,49 +43,97 @@ namespace parser
   const int r_l_xy1 =  str2int("xy1");
   const int r_l_xy2 =  str2int("xy2");
 
+
+/***********************************************************/
+                        //parse_packet//
+/***********************************************************/
+
+
+class parse_packet
+  {
+    friend class xml_parser;
+    public :
+    enum Pak_type{
+      COUNT,
+      CONFIG_VEC,
+      NONE
+      };
+
+  protected :
+
+  std::vector<String_Vec> hub_collection;
+  String_Vec raw_trainpath_vec;
+  std::vector<String_Pair> line_pair_vec;
+
+  inline const size_t number_of_hubz() {return hub_collection.size();}
+  String_Vec* get_hub_data(size_t& index);
+
+  inline const size_t number_of_tracks(){return line_pair_vec.size();}
+  String_Pair* get_track_pair(size_t& index);
+
+  inline const size_t number_of_pathz(){return raw_trainpath_vec.size();}
+
+  std::string& raw_path(size_t& index);
+    };
+
+
+/***********************************************************/
+                        //xml_parser//
+/***********************************************************/
+
 class xml_parser
 {
+
 
   private :
   std::ifstream config_file;
   std::string file_in_string;
-  std::vector<std::string> substingz;
+  String_Vec substingz;
   std::vector<int> indexzr{1,2};
   const std::sregex_token_iterator end;
   bool compleated = false;
 
+  bool load_config_trains();
+  void regex_scan();
+
+  void hub_case(parse_packet& pp, int i);
+  void trainpath_case(parse_packet& pp, int i );
+
+  void line_pair_case(parse_packet& pp, std::string xy1, int i);
+
   public :
+  parse_packet run_parser();
 
-  std::vector<std::vector<std::string>> hub_collection;
-  std::vector<std::string> raw_path_vec;
-  std::vector<std::pair<std::string,std::string>> line_pair_vec;
-
-  bool run_parser();
-  inline const size_t number_of_hubz() {return hub_collection.size();}
-  std::vector<std::string>* get_hub_data(size_t& index);
-
-  inline const size_t number_of_tracks(){return line_pair_vec.size();}
-  std::pair<std::string,std::string>* get_track_pair(size_t& index);
-
-  inline const size_t number_of_pathz(){return raw_path_vec.size();}
-
-  std::string& raw_path(size_t& index);
 
 };
+
 
 }
 
-
 /*
-enum class xml_node_type
+   Pak_type pt = NONE;
+   void* data = nullptr;
+
+   void make_count(int n)
+   {
+       pt = Count;
+       data = new int(n);
+   }
+~parse_packet()
 {
-null_node,
-root_node,
-element_node,
-plan_text_node,
-comment_node,
-declaration_node,
-};
+   if (pt == Count)
+   {
+       delete data;
+   }
+
+   if(pt == Config_Vec)
+   {
+       delete [] data;
+   }
+}
+*/
+/*
+
 */
 /*
  //protected :

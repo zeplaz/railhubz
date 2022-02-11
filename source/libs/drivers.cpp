@@ -1,12 +1,28 @@
-
 #include "drivers.hpp"
+#include <cstddef>
 #include <random>
+
+
+
 /*
 *##driver inliazers!
 *parsed data can thus be used in HERE!!!!!!---> to setup the whole systemz
 
 TODO: allow for options at startup. defult xml, custom, and binary loader-creater
 */
+
+
+
+
+
+driver::Parse_Map::Parse_Map()
+{
+
+}
+
+//String_Vec* driver::Parse_Map::get_hub_data_at(size_t i)
+
+
 void driver::drive_loop()
 {
   std::cout << "\n ########## ############# \n m_cmd_agent_op.scan_hubs_for_dispatch_cadiates();";
@@ -19,34 +35,55 @@ void driver::drive_loop()
   m_cmd_agent_op.dispatchtrain();
 }
 
-  void driver::initializer()
-  {
-    std::string rail_type1 = "rail01";
-    std::string train_type1 = "train01";
-    parser::xml_parser inilz_parser;
+void driver::factory_setup()
+{ 
 
+  std::string rail_type1 = "rail01";
+  std::string train_type1 = "train01";
 
+  
+
+  sym_manger.add_factory(rail_type1,std::make_shared<system_org::R_line_factory>());
+  sym_manger.add_factory(rail_type1,std::make_shared<system_org::R_line_factory>());
+
+  std::vector<std::shared_ptr<system_org::entity_factory>> train_factoryz;
+  train_factoryz.push_back(std::make_shared<system_org::trainz_factory>());
+  train_factoryz.push_back(std::make_shared<system_org::trainz_factory>());
+
+  sym_manger.insert_facgroup_ctrl(train_type1,std::move(train_factoryz));
+
+}
+driver::Parse_Map  driver::run_parseing()
+{
+  
+  Parse_Map pm; 
+  //being defult parsing of defualt configfile
+    pm.xml_parser.run_parser();
+
+  
+
+  pm["hubz_tomake"]    =   pm.xml_parser.number_of_hubz();
+  pm["pathz_tomale"]   =   pm.xml_parser.number_of_pathz();
+  pm["r_lienz_tomake"] =   pm.xml_parser.number_of_tracks();  
+
+  size_t n_hub =  pm.xml_parser.number_of_hubz(); 
+
+for(size_t i = 0; i<n_hub;i++)
+    {
+      String_Vec*  tdat =  pm.xml_parser.get_hub_data(i);
+  
+    }
+  return pm;
+
+}
+
+  void driver::init_hubz(const Parse_Map* pm)
+  { 
     system_org::hub_factory inlized_hub_factory;
 
-    sym_manger.add_factory(rail_type1,std::make_shared<system_org::R_line_factory>());
-    sym_manger.add_factory(rail_type1,std::make_shared<system_org::R_line_factory>());
-
-    std::vector<std::shared_ptr<system_org::entity_factory>> train_factoryz;
-
-    train_factoryz.push_back(std::make_shared<system_org::trainz_factory>());
-    train_factoryz.push_back(std::make_shared<system_org::trainz_factory>());
-
-    sym_manger.insert_facgroup_ctrl(train_type1,std::move(train_factoryz));
-
-//being defult parsing of defualt configfile
-    inilz_parser.run_parser();
-
-    const size_t hubz_tomake  = inilz_parser.number_of_hubz();
-    const size_t pathz_tomale = inilz_parser.number_of_pathz();
-    const size_t r_lienz_tomake = inilz_parser.number_of_tracks();
-
+    size_t hub_count = stoi(pm->at("hubz_tomake"));
     //Iniliaze HUBZ!
-    for(size_t i = 0; i<hubz_tomake;i++)
+    for(size_t i = 0; i<hub_count;i++)
     {
       std::vector<std::string>* temp_hubdata =  inilz_parser.get_hub_data(i);
       std::string temp_name = temp_hubdata->at(0);
@@ -55,8 +92,11 @@ void driver::drive_loop()
       sym_manger.Register_hubz(inlized_hub_factory.request_entity(temp_name,tempx,tempy));
     }
     std::cout <<"##COMPLEATED HUB CREATIONZ" << '\n';
+  }
 
-    //R_linez Iniliazationz!
+   void driver::init_R_linez()
+   {
+     //R_linez Iniliazationz!
     for(size_t i=0; i<r_lienz_tomake;i++)
     {
       sym_manger.activate_factory(rail_type1);
@@ -84,8 +124,12 @@ void driver::drive_loop()
     }
 
     std::cout <<"##COMPLEATED R_linez CREATIONZ" << '\n'<<'\n';
+   }
 
-    //Path setup
+
+   void driver::path_setup()
+   {
+         //Path setup
     std::cout <<"->DEBUG+size of pathsnum" << pathz_tomale <<'\n';
     std::vector<std::vector<std::string>> pathz_vec;
     for(size_t i = 0; i<pathz_tomale;i++)
@@ -99,6 +143,23 @@ void driver::drive_loop()
      {
        sym_manger.registar_pathz(pathz_vec.at(i));
      }
+
+   }
+  void driver::initializer()
+  {
+   
+    factory_setup();
+    
+    Parse_Map pm = run_parseing();    
+    
+    
+    init_hubz(&pm);
+
+    init_R_linez();
+    path_setup();
+
+    
+
 
 
      //TRAIN SETUPZ/
