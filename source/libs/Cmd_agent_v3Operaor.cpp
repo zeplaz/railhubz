@@ -1,12 +1,28 @@
 
+#include "system_org.hpp"
+#include "rail_trainz.hpp"
+
+
 #include "Cmd_agent_v3Operaor.hpp"
 
 
+#include <iostream>
 
-  bool  train_tuple_comparor(train_tuple lhs, train_tuple rhs)
+  bool  train_tuple_comparor(train_on_line_priory_tuple lhs, train_on_line_priory_tuple rhs)
   {
     return std::get<2>(lhs) < std::get<2>(rhs);
   };
+
+  bool operator<(const train_on_line_priory_tuple& tt1, const train_on_line_priory_tuple& tt2)
+  {
+    return std::get<2>(tt1)<std::get<2>(tt2);
+  }
+
+  bool operator>(const train_on_line_priory_tuple& tt1, const train_on_line_priory_tuple& tt2)
+  {
+    return std::get<2>(tt1)>std::get<2>(tt2);
+  }
+
 
 
 void Cmd_agent_operator::dispatchtrain()
