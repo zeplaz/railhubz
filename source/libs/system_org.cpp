@@ -10,7 +10,10 @@
 #include "factoryz.hpp"
 
 #include <stdio.h>
+#include <functional>
+#include <deque>
 
+#include <memory>
 /*
 * system_org  holds defintions for Sym_map, the factoires.
 *
@@ -60,7 +63,7 @@
 
   railhubz* system_org::Sym_Map::get_hub(size_t id) const
    {
-    
+
     std::unordered_map<size_t,railhubz*>::const_iterator cons_itor =
                                                              hubz_map.find(id);
     assert ((cons_itor != hubz_map.end()) && "<Sym_Map::get_hub_via_id>:ERROR");
@@ -80,7 +83,7 @@
 
       std::unordered_map<int,Base_TSym_entity*>::const_iterator cons_itor =
                                                            rail_entity_map.find(id);
-      
+
       assert ((cons_itor != rail_entity_map.end()) && "<Sym_Map::get_hub_via_id>:ERROR");
       return cons_itor->second;
      }
@@ -161,10 +164,10 @@
 
     std::unique_ptr<std::vector<R_linez*>> system_org::Sym_Map::retrieve_R_linez()
     {
-      std::unique_ptr<std::vector<R_linez*>> r_line_list =
-      std::make_unique<std::vector<R_linez*>>();
+      std::unique_ptr<std::vector<R_linez*>> r_line_list = std::make_unique<std::vector<R_linez*>>();
 
-      std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+  std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+     
       auto r_iteraor = rail_entity_map.begin();
 
         now = std::chrono::high_resolution_clock::now();
@@ -180,7 +183,9 @@
                 }
                 r_iteraor++;
             }
-           std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
+  
+  #if DEBUG_01
+  std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
 
             std::cout << "\n Dynamiccastz took::"
                       << std::chrono::duration_cast<std::chrono::nanoseconds>(end - now).count()
@@ -189,6 +194,7 @@
         return std::move(r_line_list);
 
       }
+
 
       void system_org::Sym_Map::registar_pathz(std::vector<std::string>& str_pathz)
       {

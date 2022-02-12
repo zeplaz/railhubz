@@ -1,27 +1,25 @@
 
 #pragma once
 
-#include "system_org.hpp"
+#include "parser.hpp"
 #include "Cmd_agent_v3Operaor.hpp"
-#include <cstddef>
-#include <unordered_map>
-#include <vector>
 
+#include <unordered_map>
 
 
 
 
 namespace driver
 {
-    static Cmd_agent_operator m_cmd_agent_op;
+   static Cmd_agent_operator m_cmd_agent_op;
 
 
-    class Parse_Map : public std::unordered_map<P_Key,parse_packet>
+    class Parse_Map : public std::unordered_map<parser::Key,parser::parse_packet>
     {
        public :
        Parse_Map();
        parser::xml_parser xml_parser;
-       String_Vec* get_hub_data_at(size_t i);
+       parser::String_Vec* get_hub_data_at(size_t i);
 
     };
 

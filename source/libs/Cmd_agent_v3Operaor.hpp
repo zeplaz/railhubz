@@ -1,41 +1,27 @@
 
 #pragma once
 
+
 #include <queue>
 #include <tuple>
-#include "system_org.hpp"
-#include "railhubz.hpp"
-#include "rail_trainz.hpp"
+//#include "system_org.hpp"
+//#include "rail_trainz.hpp"
 
+  class trainz;
+  class R_linez; 
 
-   /*
-  bool operator<(const train_tuple& tt1, const train_tuple& tt2)
-  {
-    return std::get<2>(tt1)<std::get<2>(tt2);
-  }
+  typedef std::tuple<trainz*,R_linez*,float> train_on_line_priory_tuple;
 
-  bool operator>(const train_tuple& tt1, const train_tuple& tt2)
-  {
-    return std::get<2>(tt1)>std::get<2>(tt2);
-  }
-  */
-  typedef std::tuple<trainz*,R_linez*,float> train_tuple;
-
-
-  bool  train_tuple_comparor(train_tuple lhs, train_tuple rhs);
+  bool  train_tuple_comparor(train_on_line_priory_tuple lhs, train_on_line_priory_tuple rhs);
 
  
- /* auto tup_cmp =[](train_tuple lhs, train_tuple rhs)
-  {
-    return std::get<2>(lhs) < std::get<2>(rhs);
-  };*/
 
 
  class Cmd_agent_operator
   {
     friend class Sym_Map;
     
-    using P_que_trainz = std::priority_queue<train_tuple,std::vector<train_tuple>,decltype(&train_tuple_comparor)>;
+    using P_que_trainz = std::priority_queue<train_on_line_priory_tuple,std::vector<train_on_line_priory_tuple>,decltype(&train_tuple_comparor)>;
 
     private:
 
@@ -53,3 +39,17 @@
       void dispatchtrain();
 
 };
+
+
+
+  bool operator<(const train_on_line_priory_tuple& tt1, const train_on_line_priory_tuple& tt2);
+
+
+  bool operator>(const train_on_line_priory_tuple& tt1, const train_on_line_priory_tuple& tt2);
+
+  
+ 
+ /* auto tup_cmp =[](train_tuple lhs, train_tuple rhs)
+  {
+    return std::get<2>(lhs) < std::get<2>(rhs);
+  };*/
